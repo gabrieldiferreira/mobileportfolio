@@ -66,10 +66,11 @@ a {
 
 /* Main styling */
 body {
-  background: var(--bg-primary);
+  background: transparent;
   color: var(--text-color);
-  font-family: "Raleway", sans-serif;
-  line-height: 1.5;
+  font-family: "Inter", "Raleway", sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
 }
 
 /* Navbar */
@@ -79,7 +80,9 @@ body {
   left: 0;
   right: 0;
   z-index: 20;
-  background: var(--bg-primary);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .navbar .container {

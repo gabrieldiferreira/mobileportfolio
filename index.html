@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Primary Meta Tags -->
-    <title>Portfolio by Gabriel Ferreira</title>
-    <meta name="title" content="Portfolio " />
+    <title>Gabriel Ferreira - Mobile Developer | Hyperland Portfolio</title>
+    <meta name="title" content="Gabriel Ferreira - Mobile Developer Portfolio" />
+    <meta name="description" content="Mobile Kotlin Developer specializing in Android development, Jetpack Compose, MVVM, and AI integration. Explore my projects and connect with me." />
    
-    <!-- Link -->
+    <!-- Favicon -->
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -40,16 +41,41 @@
     />
     <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico" />
     <link rel="manifest" href="assets/favicon/site.webmanifest" />
+    
+    <!-- Fonts - Apple + Tokyo + Alpenglow -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
       integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
       crossorigin="anonymous"
     />
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/utilities.css" />
+    <link rel="stylesheet" href="css/refined.css" />
   </head>
   <body>
+    <!-- Refined Apple + Tokyo + Alpenglow Background -->
+    <div class="refined-bg">
+      <div class="tokyo-elements">
+        <div class="tokyo-line tokyo-line-1"></div>
+        <div class="tokyo-line tokyo-line-2"></div>
+        <div class="tokyo-line tokyo-line-3"></div>
+      </div>
+      <div class="refined-particles">
+        <div class="particle-refined particle-refined-1"></div>
+        <div class="particle-refined particle-refined-2"></div>
+        <div class="particle-refined particle-refined-3"></div>
+      </div>
+      <div class="apple-grid"></div>
+    </div>
+
     <header id="hero">
       <!-- Navbar -->
       <nav class="navbar">
@@ -92,155 +118,328 @@
       </nav>
 
       <section class="header-container">
-        <img
-          class="profile-image"
-          src="https://avatars.githubusercontent.com/u/161978029?v=4"
-          alt=""
-        />
-        <h1>Hi, I'm Gabriel Ferreira</h1>
+        <div class="hero-content">
+          <div class="hero-badge">
+            <i class="fas fa-code"></i>
+            <span>Mobile Developer</span>
+          </div>
+          
+          <div class="hero-name-section">
+            <h1 class="hero-title">
+              <span class="title-line apple-text">Hi, I'm</span>
+              <span class="title-line refined-text">Gabriel Ferreira</span>
+            </h1>
+            
+            <!-- Profile Photo positioned close to name -->
+            <div class="hero-visual">
+              <div class="profile-card">
+                <div class="profile-image-container">
+                  <img
+                    class="profile-image"
+                    src="https://avatars.githubusercontent.com/u/161978029?v=4"
+                    alt="Gabriel Ferreira"
+                  />
+                  <div class="profile-glow"></div>
+                </div>
+                <div class="floating-tech-icons">
+                  <div class="tech-icon kotlin">
+                    <i class="fab fa-android"></i>
+                  </div>
+                  <div class="tech-icon firebase">
+                    <i class="fas fa-fire"></i>
+                  </div>
+                  <div class="tech-icon compose">
+                    <i class="fas fa-mobile-alt"></i>
+                  </div>
+                  <div class="tech-icon ai">
+                    <i class="fas fa-brain"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <h2 class="hero-subtitle apple-text">
+              <span class="typewriter-text" id="typewriter"></span>
+              <span class="typewriter-cursor">|</span>
+            </h2>
+          </div>
 
-        <div class="content-text">
-          <h2>Mobile Kotlin Developer🧑‍💻</h2>
-          <h2></h2>
-
-          <p>
-            Kotlin, MVVM, LiveData, StateFlow, Navigation Component, Room, Coroutines, Hilt, Jetpack Compose, XML, Google Maps API, Firebase, Generative AI Concepts
-          </p>
+          <div class="content-text">
+            <p class="hero-description">
+              Crafting exceptional mobile experiences with cutting-edge technology
+              <br>
+              <span class="tech-stack">Kotlin • Jetpack Compose • MVVM • Firebase • AI Integration</span>
+            </p>
+          </div>
+          
+          <div class="hero-actions">
+            <a
+              href="https://www.linkedin.com/in/gabrieldiferreira/"
+              class="btn btn-primary"
+              target="_blank"
+            >
+              <span>Connect With Me</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="#projects" class="btn btn-secondary">
+              <span>View Projects</span>
+              <i class="fas fa-chevron-down"></i>
+            </a>
+          </div>
+          
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-number">6+</span>
+              <span class="stat-label">Projects</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">2+</span>
+              <span class="stat-label">Years</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">∞</span>
+              <span class="stat-label">Passion</span>
+            </div>
+          </div>
         </div>
-        <a
-          href="https://www.linkedin.com/in/gabrieldiferreira/"
-          class="btn btn-secondary"
-          target="_blank"
-          >Connect With Me</a
-        >
       </section>
     </header>
 
     <!-- Projects -->
     <section id="projects" class="project-container container">
-      <div class="division"></div>
-      <div class="content-text">
-        <h2>My Projects</h2>
-        <p>🖱️ hover your mouse over the image 🖱️</p>
+      <div class="section-header">
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-subtitle">Explore my latest mobile development work</p>
       </div>
 
       <article class="project">
         <!-- Project 1 -->
-        <div href="https://github.com/gabrieldiferreira/SimpleNotes" class="card">
-          <div class="project-info">
-            <div class="project-bio">
-              <h3>SimpleNotes</h3>
-              <p>Java, Android</p>
+        <div class="card project-card featured">
+          <div class="project-image">
+            <div class="project-overlay">
+              <div class="project-links">
+                <a href="https://github.com/gabrieldiferreira/SimpleNotes" target="_blank" class="project-link">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="project-link">
+                  <i class="fas fa-external-link-alt"></i>
+                </a>
+              </div>
             </div>
-
-            <div class="project-link">
-              <a href="https://github.com/gabrieldiferreira/SimpleNotes" target="_blank"><i class="fab fa-github"></i></a>
-              <a href="https://github.com/gabrieldiferreira/ecommerce-android-app" target="_blank"><i class="fas fa-globe"></i></a>
+          </div>
+          <div class="project-content">
+            <div class="project-badge">Featured</div>
+            <h3 class="project-title">SimpleNotes</h3>
+            <p class="project-description">A clean and intuitive note-taking app built with Java and Android SDK</p>
+            <div class="project-tech">
+              <span class="tech-tag">Java</span>
+              <span class="tech-tag">Android</span>
+              <span class="tech-tag">SQLite</span>
             </div>
           </div>
         </div>
 
         <!-- Project 2 -->
-        <div href="https://github.com/gabrieldiferreira/ecommerce-android-app" class="card">
-          <div class="project-info">
-            <div class="project-bio">
-              <h3>Kotlin, Android</h3>
-              <p>Jetpack Compose, MVVM, Hilt, LiveData, Retrofit, Docker, Git, Linux, APIs, Firebase</p>
+        <div class="card project-card">
+          <div class="project-image">
+            <div class="project-overlay">
+              <div class="project-links">
+                <a href="https://github.com/gabrieldiferreira/ecommerce-android-app" target="_blank" class="project-link">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="project-link">
+                  <i class="fas fa-external-link-alt"></i>
+                </a>
+              </div>
             </div>
-
-            <div class="project-link">
-              <a href="https://github.com/gabrieldiferreira/ecommerce-android-app" target="_blank"><i class="fab fa-github"></i></a>
-              <a href="https://github.com/gabrieldiferreira/ecommerce-android-app" target="_blank"><i class="fas fa-globe"></i></a>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">E-commerce App</h3>
+            <p class="project-description">Modern e-commerce solution with Jetpack Compose and MVVM architecture</p>
+            <div class="project-tech">
+              <span class="tech-tag">Kotlin</span>
+              <span class="tech-tag">Jetpack Compose</span>
+              <span class="tech-tag">MVVM</span>
+              <span class="tech-tag">Hilt</span>
             </div>
           </div>
         </div>
+        
         <!-- Project 3 -->
-        <div href="https://github.com/gabrieldiferreira/ecommerce-android-app" class="card">
-          <div class="project-info">
-            <div class="project-bio">
-              <h3>Kotlin, Android</h3>
-              <p>Glide, MVVM, Hilt, LiveData, Retrofit, Docker, Git, APIs, Firebase</p>
+        <div class="card project-card">
+          <div class="project-image">
+            <div class="project-overlay">
+              <div class="project-links">
+                <a href="https://github.com/gabrieldiferreira/Random-Dice" target="_blank" class="project-link">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="project-link">
+                  <i class="fas fa-external-link-alt"></i>
+                </a>
+              </div>
             </div>
-
-            <div class="project-link">
-              <a href="https://github.com/gabrieldiferreira/Random-Dice" target="_blank"><i class="fab fa-github"></i></a>
-              <a href="https://github.com/gabrieldiferreira/Random-Dice" target="_blank"><i class="fas fa-globe"></i></a>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Random Dice</h3>
+            <p class="project-description">Interactive dice rolling game with physics-based animations</p>
+            <div class="project-tech">
+              <span class="tech-tag">Kotlin</span>
+              <span class="tech-tag">Animation</span>
+              <span class="tech-tag">Physics</span>
+              <span class="tech-tag">Game Logic</span>
             </div>
           </div>
         </div>
 
         <!-- Project 4 -->
-        <div href="https://github.com/gabrieldiferreira/TaskBeat" class="card">
-          <div class="project-info">
-            <div class="project-bio">
-              <h3>Task Beat xAI</h3>
-              <p>Using xAI API for suggest a new task</p>
+        <div class="card project-card">
+          <div class="project-image">
+            <div class="project-overlay">
+              <div class="project-links">
+                <a href="https://github.com/gabrieldiferreira/TaskBeat" target="_blank" class="project-link">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="project-link">
+                  <i class="fas fa-external-link-alt"></i>
+                </a>
+              </div>
             </div>
-
-            <div class="project-link">
-              <a href="https://github.com/gabrieldiferreira/TaskBeat" target="_blank"><i class="fab fa-github"></i></a>
-              <a href="https://github.com/gabrieldiferreira/TaskBeat" target="_blank"><i class="fas fa-globe"></i></a>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">TaskBeat xAI</h3>
+            <p class="project-description">AI-powered task management app using xAI API for intelligent suggestions</p>
+            <div class="project-tech">
+              <span class="tech-tag">Kotlin</span>
+              <span class="tech-tag">xAI API</span>
+              <span class="tech-tag">Room</span>
+              <span class="tech-tag">Coroutines</span>
             </div>
           </div>
         </div>
 
         <!-- Project 5 -->
-        <div href="https://github.com/gabrieldiferreira/ikemon" class="card">
-          <div class="project-info">
-            <div class="project-bio">
-              <h3>ikemon</h3>
-              <p>A mobile app for see your favorite Pokemon.</p>
+        <div class="card project-card">
+          <div class="project-image">
+            <div class="project-overlay">
+              <div class="project-links">
+                <a href="https://github.com/gabrieldiferreira/ikemon" target="_blank" class="project-link">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="project-link">
+                  <i class="fas fa-external-link-alt"></i>
+                </a>
+              </div>
             </div>
-
-            <div class="project-link">
-              <a href="https://github.com/gabrieldiferreira/ikemon" target="_blank"><i class="fab fa-github"></i></a>
-              <a href="https://github.com/gabrieldiferreira/ikemon" target="_blank"><i class="fas fa-globe"></i></a>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">ikemon</h3>
+            <p class="project-description">Pokemon discovery app with beautiful UI and smooth animations</p>
+            <div class="project-tech">
+              <span class="tech-tag">Kotlin</span>
+              <span class="tech-tag">Retrofit</span>
+              <span class="tech-tag">Glide</span>
+              <span class="tech-tag">Material Design</span>
             </div>
           </div>
         </div>
 
         <!-- Project 6 -->
-        <div href="https://github.com/gabrieldiferreira/ArtAttack" class="card">
-          <div class="project-info">
-            <div class="project-bio">
-              <h3>ArtAttack</h3>
-              <p>A creative app that uses AI to generate art.</p>
+        <div class="card project-card">
+          <div class="project-image">
+            <div class="project-overlay">
+              <div class="project-links">
+                <a href="https://github.com/gabrieldiferreira/ArtAttack" target="_blank" class="project-link">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="project-link">
+                  <i class="fas fa-external-link-alt"></i>
+                </a>
+              </div>
             </div>
-
-            <div class="project-link">
-              <a href="https://github.com/gabrieldiferreira/ArtAttack" target="_blank"><i class="fab fa-github"></i></a>
-              <a href="https://github.com/gabrieldiferreira/ArtAttack" target="_blank"><i class="fas fa-globe"></i></a>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">ArtAttack</h3>
+            <p class="project-description">Creative AI art generation app with stunning visual effects</p>
+            <div class="project-tech">
+              <span class="tech-tag">Kotlin</span>
+              <span class="tech-tag">AI Integration</span>
+              <span class="tech-tag">Canvas</span>
+              <span class="tech-tag">Firebase</span>
             </div>
           </div>
         </div>
       </article>
 
-      <a href="https://github.com/gabrieldiferreira" class="btn btn-secondary"
-        target="_blank" >All Projects <i class="fas fa-arrow-right"></i
-      ></a>
+      <div class="projects-cta">
+        <a href="https://github.com/gabrieldiferreira" class="btn btn-outline" target="_blank">
+          <span>View All Projects</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
     </section>
 
-    <footer id="footer">
+    <footer id="footer" class="hyperland-footer">
       <div class="container">
-        <a href="mailto:gabrielferreira.dev@icloud.com">gabrielferreira.dev@icloud.com</a>
-        <!-- Social links -->
-        <div class="social">
-          <a href="#" target="_blank"
-            ><img src="./assets/youtube-icon.svg" alt="Facebook"
-          /></a>
-          <a href="#" target="_blank"><img src="./assets/twitter-icon.svg" alt="Twitter" /></a>
-          <a href="#" target="_blank"
-            ><img src="./assets/linkedin-icon.svg" alt="Linkedin"
-          /></a>
-          <a href="#" target="_blank"><img src="./assets/github-icon.svg" alt="GitHub" /></a>
+        <div class="footer-content">
+          <div class="footer-main">
+            <div class="footer-logo">
+              <img src="./assets/logo.png" alt="Gabriel Ferreira" class="footer-logo-img">
+              <span class="footer-logo-text">Gabriel Ferreira</span>
+            </div>
+            <p class="footer-description">
+              Mobile Developer crafting exceptional experiences with cutting-edge technology
+            </p>
+            <a href="mailto:gabrielferreira.dev@icloud.com" class="footer-email">
+              <i class="fas fa-envelope"></i>
+              gabrielferreira.dev@icloud.com
+            </a>
+          </div>
+          
+          <div class="footer-links">
+            <div class="footer-section">
+              <h4>Quick Links</h4>
+              <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="https://docs.google.com/document/d/1kaw_o4kYfM_5rvXLhG_vzjh7KSi-FakX/edit?usp=sharing&ouid=109609158016519848303&rtpof=true&sd=true" target="_blank">Resume</a></li>
+                <li><a href="indexB.html">Articles</a></li>
+              </ul>
+            </div>
+            
+            <div class="footer-section">
+              <h4>Connect</h4>
+              <ul>
+                <li><a href="https://www.linkedin.com/in/gabrieldiferreira/" target="_blank">LinkedIn</a></li>
+                <li><a href="https://github.com/gabrieldiferreira" target="_blank">GitHub</a></li>
+                <li><a href="#" target="_blank">Twitter</a></li>
+                <li><a href="#" target="_blank">YouTube</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <!-- Attribution -->
-        <div class="attribution">
-          </a>
+        
+        <div class="footer-bottom">
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/gabrieldiferreira/" target="_blank" class="social-link">
+              <img src="./assets/linkedin-icon.svg" alt="LinkedIn">
+            </a>
+            <a href="https://github.com/gabrieldiferreira" target="_blank" class="social-link">
+              <img src="./assets/github-icon.svg" alt="GitHub">
+            </a>
+            <a href="#" target="_blank" class="social-link">
+              <img src="./assets/twitter-icon.svg" alt="Twitter">
+            </a>
+            <a href="#" target="_blank" class="social-link">
+              <img src="./assets/youtube-icon.svg" alt="YouTube">
+            </a>
+          </div>
+          <p class="footer-copyright">
+            Copyright &copy; Gabriel Ferreira <span id="datee"></span> All rights reserved
+          </p>
         </div>
-        <p>Copyright &copy; Gabriel Ferreira <span id="datee"></span> All rights reserved</p>
       </div>
     </footer>
     <script src="js/script.js"></script>
+    <script src="js/refined.js"></script>
   </body>
 </html>
