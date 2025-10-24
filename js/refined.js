@@ -1191,9 +1191,9 @@ function initNeuralinkInterface() {
         mouseNode = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         mouseNode.setAttribute('class', 'neuralink-mouse-node');
         mouseNode.setAttribute('r', '4');
-        mouseNode.setAttribute('fill', '#6b7280');
-        mouseNode.setAttribute('opacity', '1');
-        mouseNode.setAttribute('filter', 'drop-shadow(0 0 12px #6b7280)');
+        mouseNode.setAttribute('fill', '#d1d5db');
+        mouseNode.setAttribute('opacity', '0.3');
+        mouseNode.setAttribute('filter', 'drop-shadow(0 0 3px #d1d5db)');
         mouseNode.setAttribute('animation', 'pulse 1.5s ease-in-out infinite');
         mouseNode.style.display = 'none';
         neuralSvg.appendChild(mouseNode);
@@ -1211,9 +1211,9 @@ function initNeuralinkInterface() {
             node.setAttribute('cx', x);
             node.setAttribute('cy', y);
             node.setAttribute('r', '2');
-            node.setAttribute('fill', '#9ca3af');
-            node.setAttribute('opacity', '0.7');
-            node.setAttribute('filter', 'drop-shadow(0 0 6px #9ca3af)');
+            node.setAttribute('fill', '#d1d5db');
+            node.setAttribute('opacity', '0.15');
+            node.setAttribute('filter', 'drop-shadow(0 0 2px #d1d5db)');
             node.setAttribute('animation', 'pulse 3s ease-in-out infinite');
             
             neuralSvg.appendChild(node);
@@ -1236,10 +1236,10 @@ function initNeuralinkInterface() {
                         connection.setAttribute('y1', node1.y);
                         connection.setAttribute('x2', node2.x);
                         connection.setAttribute('y2', node2.y);
-                        connection.setAttribute('stroke', '#9ca3af');
+                        connection.setAttribute('stroke', '#d1d5db');
                         connection.setAttribute('stroke-width', '1');
-                        connection.setAttribute('opacity', '0.4');
-                        connection.setAttribute('filter', 'drop-shadow(0 0 4px #9ca3af)');
+                        connection.setAttribute('opacity', '0.1');
+                        connection.setAttribute('filter', 'drop-shadow(0 0 1px #d1d5db)');
                         connection.setAttribute('stroke-dasharray', '2,4');
                         connection.setAttribute('animation', 'flow 4s linear infinite');
                         
@@ -1255,10 +1255,10 @@ function initNeuralinkInterface() {
     function getThemeColors() {
         const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
         return {
-            mouseNode: isDark ? '#d1d5db' : '#6b7280',
-            staticNode: isDark ? '#e5e7eb' : '#9ca3af',
-            connection: isDark ? '#e5e7eb' : '#9ca3af',
-            mouseConnection: isDark ? '#d1d5db' : '#6b7280'
+            mouseNode: isDark ? '#6b7280' : '#d1d5db',
+            staticNode: isDark ? '#6b7280' : '#d1d5db',
+            connection: isDark ? '#6b7280' : '#d1d5db',
+            mouseConnection: isDark ? '#6b7280' : '#d1d5db'
         };
     }
 
@@ -1318,9 +1318,9 @@ function initNeuralinkInterface() {
                 connection.setAttribute('x2', node.x);
                 connection.setAttribute('y2', node.y);
                 connection.setAttribute('stroke', colors.mouseConnection);
-                connection.setAttribute('stroke-width', '2');
-                connection.setAttribute('opacity', '0.8');
-                connection.setAttribute('filter', `drop-shadow(0 0 8px ${colors.mouseConnection})`);
+                connection.setAttribute('stroke-width', '1');
+                connection.setAttribute('opacity', '0.2');
+                connection.setAttribute('filter', `drop-shadow(0 0 2px ${colors.mouseConnection})`);
                 connection.setAttribute('stroke-dasharray', '3,3');
                 connection.setAttribute('animation', 'flow 2s linear infinite');
                 

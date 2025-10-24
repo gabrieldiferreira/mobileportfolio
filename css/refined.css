@@ -23,9 +23,9 @@
 
 /* Override inline styles for theme consistency */
 .neural-svg .neural-node {
-  fill: #1c155e !important;
-  opacity: 1 !important;
-  filter: drop-shadow(0 0 12px #1c155e) !important;
+  fill: #d1d5db !important;
+  opacity: 0.2 !important;
+  filter: drop-shadow(0 0 2px #d1d5db) !important;
   transition: all 0.3s ease !important;
   cursor: pointer !important;
 }
@@ -36,10 +36,10 @@
 }
 
 .neural-svg .neural-connection {
-  stroke: #1c155e !important;
-  stroke-width: 3 !important;
-  opacity: 0.9 !important;
-  filter: drop-shadow(0 0 10px #1c155e) !important;
+  stroke: #d1d5db !important;
+  stroke-width: 1 !important;
+  opacity: 0.15 !important;
+  filter: drop-shadow(0 0 1px #d1d5db) !important;
   transition: all 0.3s ease !important;
   cursor: pointer !important;
 }
@@ -51,9 +51,10 @@
 }
 
 .neural-svg .chess-outline {
-  stroke: #8b5cf6 !important;
-  opacity: 0.8 !important;
-  filter: drop-shadow(0 0 12px #8b5cf6) !important;
+  stroke: #d1d5db !important;
+  stroke-width: 1 !important;
+  opacity: 0.1 !important;
+  filter: drop-shadow(0 0 1px #d1d5db) !important;
   transition: all 0.3s ease !important;
   cursor: pointer !important;
 }
@@ -70,9 +71,9 @@
 }
 
 [data-theme="dark"] .neural-svg .neural-node {
-  fill: #1c155e !important;
-  opacity: 1 !important;
-  filter: drop-shadow(0 0 15px #1c155e) !important;
+  fill: #6b7280 !important;
+  opacity: 0.15 !important;
+  filter: drop-shadow(0 0 2px #6b7280) !important;
   transition: all 0.3s ease !important;
   cursor: pointer !important;
 }
@@ -80,14 +81,14 @@
 [data-theme="dark"] .neural-svg .neural-node:hover {
   animation: hoverPulse 0.8s ease-in-out infinite !important;
   transform: scale(1.3) !important;
-  filter: drop-shadow(0 0 20px #1c155e) !important;
+  filter: drop-shadow(0 0 20px #0b0536) !important;
 }
 
 [data-theme="dark"] .neural-svg .neural-connection {
-  stroke: #1c155e !important;
-  stroke-width: 3.5 !important;
-  opacity: 1 !important;
-  filter: drop-shadow(0 0 12px #1c155e) !important;
+  stroke: #6b7280 !important;
+  stroke-width: 1 !important;
+  opacity: 0.1 !important;
+  filter: drop-shadow(0 0 1px #6b7280) !important;
   transition: all 0.3s ease !important;
   cursor: pointer !important;
 }
@@ -95,13 +96,14 @@
 [data-theme="dark"] .neural-svg .neural-connection:hover {
   animation: hoverFlow 0.6s linear infinite !important;
   stroke-width: 5 !important;
-  filter: drop-shadow(0 0 18px #1c155e) !important;
+  filter: drop-shadow(0 0 18px #0b0536) !important;
 }
 
 [data-theme="dark"] .neural-svg .chess-outline {
-  stroke: #8b5cf6 !important;
-  opacity: 0.9 !important;
-  filter: drop-shadow(0 0 15px #8b5cf6) !important;
+  stroke: #6b7280 !important;
+  stroke-width: 1 !important;
+  opacity: 0.08 !important;
+  filter: drop-shadow(0 0 1px #6b7280) !important;
   transition: all 0.3s ease !important;
   cursor: pointer !important;
 }
@@ -121,99 +123,99 @@ main, section, .container, .hero, .navbar, .footer {
 /* Neural network animations */
 @keyframes neuralPulse {
   0%, 100% {
-    opacity: 1;
+    opacity: 0.2;
     transform: scale(1);
-    filter: drop-shadow(0 0 12px #1c155e);
+    filter: drop-shadow(0 0 2px #d1d5db);
   }
   50% {
-    opacity: 1;
-    transform: scale(1.4);
-    filter: drop-shadow(0 0 20px #1c155e);
+    opacity: 0.3;
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 3px #d1d5db);
   }
 }
 
 @keyframes neuralFlow {
   0% {
     stroke-dashoffset: 0;
-    opacity: 0.9;
-    filter: drop-shadow(0 0 10px #0a0722);
+    opacity: 0.15;
+    filter: drop-shadow(0 0 1px #d1d5db);
   }
   50% {
-    opacity: 1;
-    filter: drop-shadow(0 0 15px #1c155e);
+    opacity: 0.2;
+    filter: drop-shadow(0 0 2px #d1d5db);
   }
   100% {
     stroke-dashoffset: 10;
-    opacity: 0.9;
-    filter: drop-shadow(0 0 10px #1c155e);
+    opacity: 0.15;
+    filter: drop-shadow(0 0 1px #d1d5db);
   }
 }
 
 @keyframes hoverPulse {
   0%, 100% {
     transform: scale(1);
-    filter: drop-shadow(0 0 15px #1c155e);
+    filter: drop-shadow(0 0 3px #d1d5db);
   }
   50% {
-    transform: scale(1.6);
-    filter: drop-shadow(0 0 25px #1c155e);
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 5px #d1d5db);
   }
 }
 
 @keyframes hoverFlow {
   0% {
     stroke-dashoffset: 0;
-    filter: drop-shadow(0 0 15px #1c155e);
+    filter: drop-shadow(0 0 2px #d1d5db);
   }
   50% {
-    filter: drop-shadow(0 0 20px #1c155e);
+    filter: drop-shadow(0 0 3px #d1d5db);
   }
   100% {
     stroke-dashoffset: 20;
-    filter: drop-shadow(0 0 15px #1c155e);
+    filter: drop-shadow(0 0 2px #d1d5db);
   }
 }
 
 @keyframes hoverOutline {
   0%, 100% {
-    filter: drop-shadow(0 0 15px #8b5cf6);
+    filter: drop-shadow(0 0 2px #d1d5db);
   }
   50% {
-    filter: drop-shadow(0 0 25px #8b5cf6);
+    filter: drop-shadow(0 0 3px #d1d5db);
   }
 }
 
 /* Neuralink Interface Styles */
 .neuralink-mouse-node {
-  fill: #6b7280 !important;
-  opacity: 1 !important;
-  filter: drop-shadow(0 0 12px #6b7280) !important;
+  fill: #d1d5db !important;
+  opacity: 0.3 !important;
+  filter: drop-shadow(0 0 3px #d1d5db) !important;
   animation: pulse 1.5s ease-in-out infinite !important;
   transition: all 0.2s ease !important;
 }
 
 .neuralink-static-node {
-  fill: #9ca3af !important;
-  opacity: 0.7 !important;
-  filter: drop-shadow(0 0 6px #9ca3af) !important;
+  fill: #d1d5db !important;
+  opacity: 0.15 !important;
+  filter: drop-shadow(0 0 2px #d1d5db) !important;
   animation: pulse 3s ease-in-out infinite !important;
   transition: all 0.3s ease !important;
 }
 
 .neuralink-connection {
-  stroke: #9ca3af !important;
+  stroke: #d1d5db !important;
   stroke-width: 1 !important;
-  opacity: 0.4 !important;
-  filter: drop-shadow(0 0 4px #9ca3af) !important;
+  opacity: 0.1 !important;
+  filter: drop-shadow(0 0 1px #d1d5db) !important;
   stroke-dasharray: 2,4 !important;
   animation: flow 4s linear infinite !important;
 }
 
 .neuralink-mouse-connection {
-  stroke: #6b7280 !important;
-  stroke-width: 2 !important;
-  opacity: 0.8 !important;
-  filter: drop-shadow(0 0 8px #6b7280) !important;
+  stroke: #d1d5db !important;
+  stroke-width: 1 !important;
+  opacity: 0.2 !important;
+  filter: drop-shadow(0 0 2px #d1d5db) !important;
   stroke-dasharray: 3,3 !important;
   animation: flow 2s linear infinite !important;
   transition: all 0.2s ease !important;
@@ -221,34 +223,39 @@ main, section, .container, .hero, .navbar, .footer {
 
 .neuralink-static-node:hover {
   animation: hoverPulse 0.8s ease-in-out infinite !important;
-  transform: scale(1.3) !important;
-  filter: drop-shadow(0 0 10px #9ca3af) !important;
-  opacity: 1 !important;
+  transform: scale(1.2) !important;
+  filter: drop-shadow(0 0 3px #d1d5db) !important;
+  opacity: 0.3 !important;
 }
 
 /* Dark mode Neuralink adjustments */
 [data-theme="dark"] .neuralink-mouse-node {
-  fill: #d1d5db !important;
-  filter: drop-shadow(0 0 12px #d1d5db) !important;
+  fill: #6b7280 !important;
+  opacity: 0.2 !important;
+  filter: drop-shadow(0 0 2px #6b7280) !important;
 }
 
 [data-theme="dark"] .neuralink-static-node {
-  fill: #e5e7eb !important;
-  filter: drop-shadow(0 0 6px #e5e7eb) !important;
+  fill: #6b7280 !important;
+  opacity: 0.1 !important;
+  filter: drop-shadow(0 0 1px #6b7280) !important;
 }
 
 [data-theme="dark"] .neuralink-connection {
-  stroke: #e5e7eb !important;
-  filter: drop-shadow(0 0 4px #e5e7eb) !important;
+  stroke: #6b7280 !important;
+  opacity: 0.08 !important;
+  filter: drop-shadow(0 0 1px #6b7280) !important;
 }
 
 [data-theme="dark"] .neuralink-mouse-connection {
-  stroke: #d1d5db !important;
-  filter: drop-shadow(0 0 8px #d1d5db) !important;
+  stroke: #6b7280 !important;
+  opacity: 0.15 !important;
+  filter: drop-shadow(0 0 1px #6b7280) !important;
 }
 
 [data-theme="dark"] .neuralink-static-node:hover {
-  filter: drop-shadow(0 0 10px #e5e7eb) !important;
+  opacity: 0.2 !important;
+  filter: drop-shadow(0 0 2px #6b7280) !important;
 }
 
 /* Mobile optimizations */
