@@ -4415,3 +4415,32 @@ html {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Hide header in mobile mode and organize spacing */
+@media (max-width: 768px) {
+  .navbar {
+    display: none !important;
+  }
+  
+  /* Remove top padding/margin from hero section */
+  .hero {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+  
+  /* Adjust hero content spacing */
+  .hero-content {
+    padding-top: var(--space-4) !important;
+  }
+  
+  /* Remove any gaps between sections */
+  section {
+    margin-top: 0 !important;
+    padding-top: var(--space-6) !important;
+  }
+  
+  /* Ensure first section has no top margin */
+  section:first-of-type {
+    padding-top: var(--space-4) !important;
+  }
+}
