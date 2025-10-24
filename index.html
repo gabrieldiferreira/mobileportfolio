@@ -24,6 +24,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Preload critical resources -->
+    <link rel="preload" href="css/refined.css" as="style">
+    <link rel="preload" href="js/refined.js" as="script">
+    <link rel="preload" href="assets/logo.svg" as="image">
+    
     <!-- Font Awesome -->
     <link
       rel="stylesheet"
@@ -33,11 +38,17 @@
     />
     
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/style.css?v=1.0.8" />
-    <link rel="stylesheet" href="css/utilities.css?v=1.0.8" />
-    <link rel="stylesheet" href="css/refined.css?v=1.0.8" />
+    <link rel="stylesheet" href="css/style.css?v=1.1.0" />
+    <link rel="stylesheet" href="css/utilities.css?v=1.1.0" />
+    <link rel="stylesheet" href="css/refined.css?v=1.1.0" />
   </head>
   <body>
+    <!-- Loading Indicator -->
+    <div id="loading-indicator" class="loading-indicator">
+      <div class="loading-spinner"></div>
+      <p>Loading...</p>
+    </div>
+    
     <!-- Skip Navigation for Accessibility -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
     
@@ -101,15 +112,15 @@
 
       <section class="header-container" id="main-content">
         <div class="hero-content">
-          <div class="hero-badge">
+          <div class="hero-badge scroll-animate">
             <i class="fas fa-code"></i>
             <span>Mobile Developer</span>
           </div>
           
           <div class="hero-name-section">
             <h1 class="hero-title">
-              <span class="title-line apple-text">Hi, I'm</span>
-              <span class="title-line refined-text">Gabriel Ferreira</span>
+              <span class="title-line apple-text text-reveal">Hi, I'm</span>
+              <span class="title-line refined-text text-reveal stagger-1">Gabriel Ferreira</span>
             </h1>
             
             <!-- Profile Photo positioned close to name -->
@@ -200,7 +211,7 @@
 
       <article class="project">
         <!-- Project 1 -->
-        <div class="card project-card featured">
+        <div class="card project-card featured project-entrance">
           <div class="project-image">
             <div class="project-overlay">
               <div class="project-links">
@@ -375,11 +386,11 @@
 
       <div class="experience-timeline">
         <!-- Current Position - DevSpace -->
-        <div class="timeline-item current">
+        <div class="timeline-item current timeline-entrance">
           <div class="timeline-marker">
             <i class="fas fa-rocket"></i>
           </div>
-          <div class="timeline-content">
+          <div class="timeline-content card-entrance">
             <div class="experience-card">
               <div class="experience-header">
                 <div class="company-info">
@@ -477,16 +488,16 @@
 
       <div class="skills-grid">
         <!-- Languages & Frameworks -->
-        <div class="skill-category">
+        <div class="skill-category card-entrance">
           <div class="skill-category-header">
             <i class="fas fa-code"></i>
             <h3>Languages & Frameworks</h3>
           </div>
           <div class="skill-tags">
-            <span class="skill-tag primary">Kotlin</span>
-            <span class="skill-tag primary">Java</span>
-            <span class="skill-tag secondary">XML</span>
-            <span class="skill-tag primary">Jetpack Compose</span>
+            <span class="skill-tag primary skill-tag-entrance">Kotlin</span>
+            <span class="skill-tag primary skill-tag-entrance stagger-1">Java</span>
+            <span class="skill-tag secondary skill-tag-entrance stagger-2">XML</span>
+            <span class="skill-tag primary skill-tag-entrance stagger-3">Jetpack Compose</span>
           </div>
         </div>
 
@@ -722,8 +733,8 @@
               <ul>
                 <li><a href="https://www.linkedin.com/in/gabrieldiferreira/" target="_blank">LinkedIn</a></li>
                 <li><a href="https://github.com/gabrieldiferreira" target="_blank">GitHub</a></li>
-                <li><a href="#" target="_blank">Twitter</a></li>
-                <li><a href="#" target="_blank">YouTube</a></li>
+                <li><a href="https://t.me/gabrieldiferreira" target="_blank">Telegram</a></li>
+                <li><a href="mailto:gabrielferreira.dev@icloud.com" target="_blank">Email</a></li>
               </ul>
             </div>
           </div>
@@ -750,7 +761,7 @@
         </div>
       </div>
     </footer>
-    <script src="js/script.js?v=1.0.3"></script>
-    <script src="js/refined.js?v=1.0.3"></script>
+    <script src="js/script.js?v=1.1.0"></script>
+    <script src="js/refined.js?v=1.1.0"></script>
   </body>
 </html>

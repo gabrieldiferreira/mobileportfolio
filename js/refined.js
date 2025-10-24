@@ -13,6 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
     positionPhotoNearTitle();
     window.addEventListener('resize', throttle(positionPhotoNearTitle, 100));
     
+    // Initialize scroll animations
+    initScrollAnimations();
+    initParallaxEffects();
+    
     // Initialize typewriter animation
     initTypewriterAnimation();
     
@@ -815,3 +819,198 @@ function monitorRefinedPerformance() {
 
 // Start refined performance monitoring
 requestAnimationFrame(monitorRefinedPerformance);
+
+// Scroll Animations - Apple/Wix Inspired
+function initScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+            }
+        });
+    }, observerOptions);
+
+    // Observe all elements with scroll animation classes
+    const animatedElements = document.querySelectorAll(`
+        .scroll-animate,
+        .reveal-up,
+        .reveal-down,
+        .card-entrance,
+        .timeline-entrance,
+        .skill-tag-entrance,
+        .project-entrance,
+        .contact-entrance,
+        .text-reveal
+    `);
+
+    animatedElements.forEach(el => {
+        observer.observe(el);
+    });
+
+    // Add stagger delays to elements
+    const staggerElements = document.querySelectorAll('.scroll-animate');
+    staggerElements.forEach((el, index) => {
+        if (index < 5) {
+            el.classList.add(`stagger-${index + 1}`);
+        }
+    });
+}
+
+// Parallax Effects
+function initParallaxEffects() {
+    const parallaxElements = document.querySelectorAll('.parallax-slow, .parallax-medium, .parallax-fast');
+    
+    if (parallaxElements.length === 0) return;
+
+    function updateParallax() {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * -0.5;
+
+        parallaxElements.forEach(el => {
+            const speed = el.classList.contains('parallax-slow') ? 0.3 : 
+                         el.classList.contains('parallax-medium') ? 0.5 : 0.7;
+            
+            const yPos = -(scrolled * speed);
+            el.style.transform = `translateY(${yPos}px)`;
+        });
+    }
+
+    // Throttle parallax updates for performance
+    let ticking = false;
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(updateParallax);
+            ticking = true;
+        }
+    }
+
+    window.addEventListener('scroll', () => {
+        requestTick();
+        ticking = false;
+    });
+}
+
+// Smooth scroll for anchor links
+function initSmoothScroll() {
+    const links = document.querySelectorAll('a[href^="#"]');
+    
+    links.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === '#' || href === '#main-content') return;
+            
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+}
+
+// Enhanced hover effects
+function initEnhancedHovers() {
+    const hoverElements = document.querySelectorAll('.hover-lift, .hover-scale');
+    
+    hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', function() {
+            this.style.transition = 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        });
+    });
+}
+
+// Initialize smooth scroll and enhanced hovers
+document.addEventListener('DOMContentLoaded', function() {
+    try {
+        initSmoothScroll();
+        initEnhancedHovers();
+    } catch (error) {
+        console.warn('Some features failed to initialize:', error);
+    }
+});
+
+// Error handling for failed resource loading
+window.addEventListener('error', function(e) {
+    if (e.target.tagName === 'IMG') {
+        console.warn('Image failed to load:', e.target.src);
+        // Add fallback for broken images
+        e.target.style.display = 'none';
+    } else if (e.target.tagName === 'LINK' || e.target.tagName === 'SCRIPT') {
+        console.warn('Resource failed to load:', e.target.src || e.target.href);
+    }
+});
+
+// Ensure all critical elements are loaded
+function ensureCriticalElementsLoaded() {
+    const criticalElements = [
+        '.navbar',
+        '.hero-content',
+        '.floating-social-container'
+    ];
+    
+    criticalElements.forEach(selector => {
+        const element = document.querySelector(selector);
+        if (!element) {
+            console.warn('Critical element not found:', selector);
+        }
+    });
+}
+
+// Run critical element check after DOM is loaded
+document.addEventListener('DOMContentLoaded', ensureCriticalElementsLoaded);
+
+// Performance monitoring
+function checkLoadingPerformance() {
+    if (window.performance && window.performance.timing) {
+        const timing = window.performance.timing;
+        const loadTime = timing.loadEventEnd - timing.navigationStart;
+        
+        if (loadTime > 3000) {
+            console.warn('Page load time is slow:', loadTime + 'ms');
+        }
+    }
+}
+
+// Check performance after page load
+window.addEventListener('load', checkLoadingPerformance);
+
+// Loading indicator management
+function initLoadingIndicator() {
+    const loadingIndicator = document.getElementById('loading-indicator');
+    
+    if (!loadingIndicator) return;
+    
+    // Hide loading indicator when everything is loaded
+    function hideLoadingIndicator() {
+        if (loadingIndicator) {
+            loadingIndicator.classList.add('hidden');
+            // Remove from DOM after animation
+            setTimeout(() => {
+                if (loadingIndicator.parentNode) {
+                    loadingIndicator.parentNode.removeChild(loadingIndicator);
+                }
+            }, 500);
+        }
+    }
+    
+    // Hide loading indicator when DOM is ready and fonts are loaded
+    if (document.readyState === 'complete') {
+        hideLoadingIndicator();
+    } else {
+        window.addEventListener('load', hideLoadingIndicator);
+    }
+    
+    // Fallback: hide after 3 seconds regardless
+    setTimeout(hideLoadingIndicator, 3000);
+}
+
+// Initialize loading indicator
+document.addEventListener('DOMContentLoaded', initLoadingIndicator);
