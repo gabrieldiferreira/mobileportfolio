@@ -15,6 +15,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize typewriter animation
     initTypewriterAnimation();
+    
+    // Initialize skills animations
+    initSkillsAnimations();
+    
+    // Initialize experience animations
+    initExperienceAnimations();
+    
+    // Initialize dark mode
+    initDarkMode();
 });
 
 function initRefinedFeatures() {
@@ -119,6 +128,135 @@ function initTypewriterAnimation() {
     setTimeout(typeWriter, 1000); // Initial delay
 }
 
+function initSkillsAnimations() {
+    // Intersection Observer for skills animation
+    const skillsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    // Observe all skill categories
+    const skillCategories = document.querySelectorAll('.skill-category');
+    skillCategories.forEach(category => {
+        skillsObserver.observe(category);
+    });
+
+    // Add hover effects to skill tags
+    const skillTags = document.querySelectorAll('.skill-tag');
+    skillTags.forEach(tag => {
+        tag.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px) scale(1.05)';
+        });
+        
+        tag.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+}
+
+function initExperienceAnimations() {
+    // Intersection Observer for experience timeline animation
+    const experienceObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    // Observe all timeline items
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    timelineItems.forEach(item => {
+        experienceObserver.observe(item);
+    });
+
+    // Add hover effects to experience cards
+    const experienceCards = document.querySelectorAll('.timeline-content');
+    experienceCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-4px)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+
+    // Add click effects to company links
+    const companyLinks = document.querySelectorAll('.company-link');
+    companyLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Add ripple effect
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+}
+
+function initDarkMode() {
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const themeIcon = document.getElementById('theme-icon');
+    const body = document.body;
+    
+    // Check for saved theme preference or default to light mode
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    body.setAttribute('data-theme', currentTheme);
+    
+    // Set initial icon based on current theme
+    updateThemeIcon(currentTheme);
+    
+    // Toggle theme
+    themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        // Update theme
+        body.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        // Update icon with smooth transition
+        updateThemeIcon(newTheme);
+        
+        // Add smooth transition effect
+        body.style.transition = 'all 0.3s ease';
+        setTimeout(() => {
+            body.style.transition = '';
+        }, 300);
+    });
+    
+    function updateThemeIcon(theme) {
+        if (theme === 'dark') {
+            // Dark mode: show sun icon (click to go to light)
+            themeIcon.className = 'fas fa-sun';
+            themeIcon.style.color = '#F59E0B';
+        } else {
+            // Light mode: show moon icon (click to go to dark)
+            themeIcon.className = 'fas fa-moon';
+            themeIcon.style.color = '#8B5CF6';
+        }
+        
+        // Add rotation animation
+        themeIcon.style.transform = 'rotate(180deg)';
+        setTimeout(() => {
+            themeIcon.style.transform = 'rotate(0deg)';
+        }, 300);
+    }
+}
+
 function initExistingFeatures() {
     // Hamburger menu functionality
     const hamburger = document.querySelector(".hamburger");
@@ -178,7 +316,24 @@ function initExistingFeatures() {
     }
 }
 
+// Mobile device detection
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+           ('ontouchstart' in window) || 
+           (navigator.maxTouchPoints > 0);
+}
+
 function initBreathingCursor() {
+    // Skip mouse follower on mobile devices
+    if (isMobileDevice()) {
+        console.log('Mobile device detected - skipping mouse follower');
+        return;
+    }
+    
+    // Remove any existing mouse followers to prevent duplicates
+    const existingFollowers = document.querySelectorAll('.breathing-cursor, .cursor-trail, .mouse-follower, .luminous-cursor');
+    existingFollowers.forEach(follower => follower.remove());
+    
     // Create breathing cursor element
     const cursor = document.createElement('div');
     cursor.className = 'breathing-cursor';
@@ -196,6 +351,7 @@ function initBreathingCursor() {
         box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
         background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
         animation: breathing-glow 3s ease-in-out infinite;
+        will-change: transform, opacity;
     `;
     document.body.appendChild(cursor);
     
@@ -213,20 +369,18 @@ function initBreathingCursor() {
         opacity: 0;
         transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
         filter: blur(1px);
+        will-change: transform, opacity;
     `;
     document.body.appendChild(trail);
     
     let mouseX = 0, mouseY = 0;
     let trailX = 0, trailY = 0;
+    let animationId;
     
-    // Apple-style mouse tracking with smooth interpolation
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        
+    // Optimized mouse tracking with requestAnimationFrame
+    function updateCursor() {
         cursor.style.left = mouseX - 10 + 'px';
         cursor.style.top = mouseY - 10 + 'px';
-        cursor.style.opacity = '1';
         
         // Smooth trail following with Apple-like easing
         trailX += (mouseX - trailX) * 0.15;
@@ -234,12 +388,43 @@ function initBreathingCursor() {
         
         trail.style.left = trailX - 3 + 'px';
         trail.style.top = trailY - 3 + 'px';
+        
+        animationId = requestAnimationFrame(updateCursor);
+    }
+    
+    // Throttled mouse move handler
+    let mouseMoveTimeout;
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        cursor.style.opacity = '1';
         trail.style.opacity = '0.8';
+        
+        // Start animation loop if not already running
+        if (!animationId) {
+            updateCursor();
+        }
+        
+        // Clear any existing timeout
+        clearTimeout(mouseMoveTimeout);
+        mouseMoveTimeout = setTimeout(() => {
+            cursor.style.opacity = '0';
+            trail.style.opacity = '0';
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+            }
+        }, 100);
     });
     
     document.addEventListener('mouseleave', () => {
         cursor.style.opacity = '0';
         trail.style.opacity = '0';
+        if (animationId) {
+            cancelAnimationFrame(animationId);
+            animationId = null;
+        }
     });
     
     // Enhanced hover effects with Apple smoothness
@@ -280,6 +465,15 @@ function initBreathingCursor() {
             cursor.style.boxShadow = '0 0 20px rgba(139, 92, 246, 0.3)';
             cursor.style.background = 'radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%)';
         });
+    });
+    
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+        if (animationId) {
+            cancelAnimationFrame(animationId);
+        }
+        cursor.remove();
+        trail.remove();
     });
 }
 

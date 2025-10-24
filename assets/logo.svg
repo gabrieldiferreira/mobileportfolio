@@ -1,0 +1,52 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#06B6D4;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#EC4899;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Mobile phone outline - larger and clearer -->
+  <rect x="20" y="10" width="80" height="100" rx="12" ry="12" 
+        fill="none" 
+        stroke="url(#logoGradient)" 
+        stroke-width="4"/>
+  
+  <!-- Screen - larger and more prominent -->
+  <rect x="30" y="20" width="60" height="70" rx="6" ry="6" 
+        fill="url(#logoGradient)" 
+        opacity="0.15"/>
+  
+  <!-- Home button - larger -->
+  <circle cx="60" cy="100" r="5" 
+          fill="url(#logoGradient)" 
+          opacity="0.8"/>
+  
+  <!-- Code elements on screen - larger and clearer -->
+  <rect x="35" y="30" width="15" height="3" fill="url(#accentGradient)" opacity="0.9"/>
+  <rect x="35" y="38" width="20" height="3" fill="url(#accentGradient)" opacity="0.9"/>
+  <rect x="35" y="46" width="12" height="3" fill="url(#accentGradient)" opacity="0.9"/>
+  <rect x="35" y="54" width="18" height="3" fill="url(#accentGradient)" opacity="0.9"/>
+  
+  <!-- Developer initials "GF" - much larger and clearer -->
+  <text x="60" y="75" 
+        font-family="Arial, sans-serif" 
+        font-size="24" 
+        font-weight="bold" 
+        text-anchor="middle" 
+        fill="url(#logoGradient)" 
+        opacity="1">GF</text>
+  
+  <!-- Connection dots - larger and more visible -->
+  <circle cx="10" cy="25" r="2.5" fill="url(#accentGradient)" opacity="0.8"/>
+  <circle cx="10" cy="40" r="2.5" fill="url(#accentGradient)" opacity="0.8"/>
+  <circle cx="10" cy="55" r="2.5" fill="url(#accentGradient)" opacity="0.8"/>
+  
+  <circle cx="110" cy="25" r="2.5" fill="url(#accentGradient)" opacity="0.8"/>
+  <circle cx="110" cy="40" r="2.5" fill="url(#accentGradient)" opacity="0.8"/>
+  <circle cx="110" cy="55" r="2.5" fill="url(#accentGradient)" opacity="0.8"/>
+</svg>
