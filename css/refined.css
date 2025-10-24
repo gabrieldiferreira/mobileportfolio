@@ -4221,8 +4221,22 @@ body {
   }
   
   .hero-stats {
-    grid-template-columns: 1fr;
-    gap: var(--space-4);
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2);
+    max-width: 100%;
+    padding: var(--space-2);
+  }
+  
+  .stat {
+    padding: var(--space-4);
+  }
+  
+  .stat-number {
+    font-size: 1.8rem;
+  }
+  
+  .stat-label {
+    font-size: 0.8rem;
   }
   
   .floating-tech-icons {
