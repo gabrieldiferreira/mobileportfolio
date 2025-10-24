@@ -26,8 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize experience animations
     initExperienceAnimations();
     
-    // Initialize dark mode
-    initDarkMode();
 });
 
 function initRefinedFeatures() {
@@ -46,8 +44,6 @@ function initRefinedFeatures() {
     // Typing animation with Apple smoothness
     initAppleTypingAnimation();
     
-    // Theme toggle with refined ripple
-    initRefinedThemeToggle();
     
     // Scroll-triggered refined animations
     initRefinedScrollAnimations();
@@ -211,55 +207,6 @@ function initExperienceAnimations() {
     });
 }
 
-function initDarkMode() {
-    const themeToggleBtn = document.getElementById('theme-toggle-btn');
-    const themeIcon = document.getElementById('theme-icon');
-    const body = document.body;
-    
-    // Check for saved theme preference or default to light mode
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    body.setAttribute('data-theme', currentTheme);
-    
-    // Set initial icon based on current theme
-    updateThemeIcon(currentTheme);
-    
-    // Toggle theme
-    themeToggleBtn.addEventListener('click', () => {
-        const currentTheme = body.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        // Update theme
-        body.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        
-        // Update icon with smooth transition
-        updateThemeIcon(newTheme);
-        
-        // Add smooth transition effect
-        body.style.transition = 'all 0.3s ease';
-        setTimeout(() => {
-            body.style.transition = '';
-        }, 300);
-    });
-    
-    function updateThemeIcon(theme) {
-        if (theme === 'dark') {
-            // Dark mode: show sun icon (click to go to light)
-            themeIcon.className = 'fas fa-sun';
-            themeIcon.style.color = '#F59E0B';
-        } else {
-            // Light mode: show moon icon (click to go to dark)
-            themeIcon.className = 'fas fa-moon';
-            themeIcon.style.color = '#8B5CF6';
-        }
-        
-        // Add rotation animation
-        themeIcon.style.transform = 'rotate(180deg)';
-        setTimeout(() => {
-            themeIcon.style.transform = 'rotate(0deg)';
-        }, 300);
-    }
-}
 
 function initExistingFeatures() {
     // Hamburger menu functionality
@@ -285,32 +232,6 @@ function initExistingFeatures() {
         navMenu.classList.remove("active");
     }
 
-    // Theme toggle functionality
-    const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
-
-    if (toggleSwitch) {
-        toggleSwitch.addEventListener("change", switchTheme, false);
-    }
-
-    function switchTheme(e) {
-        if (e.target.checked) {
-            document.documentElement.setAttribute("data-theme", "dark");
-            localStorage.setItem("theme", "dark");
-        } else {
-            document.documentElement.setAttribute("data-theme", "light");
-            localStorage.setItem("theme", "light");
-        }
-    }
-
-    // Save user preference on load
-    const currentTheme = localStorage.getItem("theme") ? localStorage.getItem("theme") : null;
-
-    if (currentTheme) {
-        document.documentElement.setAttribute("data-theme", currentTheme);
-        if (currentTheme === "dark") {
-            toggleSwitch.checked = true;
-        }
-    }
 
     // Adding date
     let myDate = document.querySelector("#datee");
@@ -614,51 +535,6 @@ function initAppleTypingAnimation() {
     });
 }
 
-function initRefinedThemeToggle() {
-    const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
-    if (!toggleSwitch) return;
-    
-    toggleSwitch.addEventListener('change', function() {
-        // Create refined ripple effect
-        const ripple = document.createElement('div');
-        ripple.style.cssText = `
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            background: ${this.checked ? 'radial-gradient(circle, #8B5CF6, #EC4899)' : 'radial-gradient(circle, #F97316, #EC4899)'};
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            animation: refined-ripple 1s cubic-bezier(0.4, 0, 0.2, 1);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        `;
-        
-        // Add refined ripple animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes refined-ripple {
-                0% {
-                    transform: translate(-50%, -50%) scale(0);
-                    opacity: 1;
-                }
-                100% {
-                    transform: translate(-50%, -50%) scale(40);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-        
-        document.body.appendChild(ripple);
-        
-        setTimeout(() => {
-            ripple.remove();
-            style.remove();
-        }, 1000);
-    });
-}
 
 function initRefinedScrollAnimations() {
     // Intersection Observer for refined scroll animations
@@ -1251,34 +1127,21 @@ function initNeuralinkInterface() {
         });
     }
 
-    // Get theme-aware colors
-    function getThemeColors() {
-        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-        return {
-            mouseNode: isDark ? '#6b7280' : '#d1d5db',
-            staticNode: isDark ? '#6b7280' : '#d1d5db',
-            connection: isDark ? '#6b7280' : '#d1d5db',
-            mouseConnection: isDark ? '#6b7280' : '#d1d5db'
-        };
-    }
-
-    // Update colors based on theme
+    // Static colors for light mode only
     function updateColors() {
-        const colors = getThemeColors();
-        
         if (mouseNode) {
-            mouseNode.setAttribute('fill', colors.mouseNode);
-            mouseNode.setAttribute('filter', `drop-shadow(0 0 12px ${colors.mouseNode})`);
+            mouseNode.setAttribute('fill', '#d1d5db');
+            mouseNode.setAttribute('filter', 'drop-shadow(0 0 12px #d1d5db)');
         }
         
         neuralNodes.forEach(node => {
-            node.element.setAttribute('fill', colors.staticNode);
-            node.element.setAttribute('filter', `drop-shadow(0 0 6px ${colors.staticNode})`);
+            node.element.setAttribute('fill', '#d1d5db');
+            node.element.setAttribute('filter', 'drop-shadow(0 0 6px #d1d5db)');
         });
         
         neuralConnections.forEach(connection => {
-            connection.setAttribute('stroke', colors.connection);
-            connection.setAttribute('filter', `drop-shadow(0 0 4px ${colors.connection})`);
+            connection.setAttribute('stroke', '#d1d5db');
+            connection.setAttribute('filter', 'drop-shadow(0 0 4px #d1d5db)');
         });
     }
 
@@ -1304,7 +1167,9 @@ function initNeuralinkInterface() {
         const existingMouseConnections = neuralSvg.querySelectorAll('.neuralink-mouse-connection');
         existingMouseConnections.forEach(conn => conn.remove());
 
-        const colors = getThemeColors();
+        const colors = {
+            mouseConnection: '#d1d5db'
+        };
         
         neuralNodes.forEach(node => {
             const distance = Math.sqrt((mouseX - node.x) ** 2 + (mouseY - node.y) ** 2);
@@ -1351,22 +1216,12 @@ function initNeuralinkInterface() {
     createMouseNode();
     generateNeuralNodes();
     createNeuralConnections();
-    updateColors(); // Set initial colors based on current theme
+    updateColors(); // Set initial colors
 
     // Add event listeners
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseenter', handleMouseEnter);
     document.addEventListener('mouseleave', handleMouseLeave);
-    
-    // Listen for theme changes
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
-                updateColors();
-            }
-        });
-    });
-    observer.observe(document.documentElement, { attributes: true });
 }
 
 // Initialize neural network hover effects
