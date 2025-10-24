@@ -1985,6 +1985,9 @@ body {
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-8);
   max-width: 600px;
+  background: var(--bg-primary);
+  padding: var(--space-4);
+  border-radius: var(--radius-2xl);
 }
 
 .stat {
