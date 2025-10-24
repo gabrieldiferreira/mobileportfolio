@@ -1,0 +1,67 @@
+# Aggressive Cache Prevention - Always Fresh Content
+# This ensures every visit feels like the first time
+
+# Disable all caching
+<IfModule mod_headers.c>
+    # Prevent caching of HTML files
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0, private"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+        Header set Last-Modified "0"
+        Header unset ETag
+    </FilesMatch>
+    
+    # Prevent caching of CSS files
+    <FilesMatch "\.css$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0, private"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+        Header unset ETag
+    </FilesMatch>
+    
+    # Prevent caching of JavaScript files
+    <FilesMatch "\.js$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0, private"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+        Header unset ETag
+    </FilesMatch>
+    
+    # Prevent caching of images (optional - you might want to cache these)
+    <FilesMatch "\.(jpg|jpeg|png|gif|svg|webp)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0, private"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+        Header unset ETag
+    </FilesMatch>
+    
+    # Prevent caching of fonts
+    <FilesMatch "\.(woff|woff2|ttf|eot)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0, private"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+        Header unset ETag
+    </FilesMatch>
+</IfModule>
+
+# Disable ETags completely
+FileETag None
+
+# Disable Last-Modified headers
+<IfModule mod_headers.c>
+    Header unset Last-Modified
+</IfModule>
+
+# Force fresh content
+<IfModule mod_expires.c>
+    ExpiresActive Off
+</IfModule>
+
+# Disable compression caching (optional)
+<IfModule mod_deflate.c>
+    SetEnvIfNoCase Request_URI \
+        \.(?:gif|jpe?g|png)$ no-gzip dont-vary
+    SetEnvIfNoCase Request_URI \
+        \.(?:exe|t?gz|zip|bz2|sit|rar)$ no-gzip dont-vary
+</IfModule>
