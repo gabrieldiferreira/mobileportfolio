@@ -1014,3 +1014,424 @@ function initLoadingIndicator() {
 
 // Initialize loading indicator
 document.addEventListener('DOMContentLoaded', initLoadingIndicator);
+
+// Neural Network Animation
+function initNeuralNetwork() {
+    console.log('🧠 Initializing neural network...');
+    const neuralSvg = document.querySelector('.neural-svg');
+    if (!neuralSvg) {
+        console.log('❌ Neural SVG not found');
+        return;
+    }
+    console.log('✅ Neural SVG found, creating animation...');
+    
+    // Clear existing content
+    neuralSvg.innerHTML = '';
+    
+    // Add a test element to verify SVG is working
+    const testCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    testCircle.setAttribute('cx', '100');
+    testCircle.setAttribute('cy', '100');
+    testCircle.setAttribute('r', '10');
+    testCircle.setAttribute('fill', 'red');
+    testCircle.setAttribute('opacity', '0.8');
+    neuralSvg.appendChild(testCircle);
+    console.log('🧪 Test circle added');
+    
+    // Create neural network nodes
+    const nodes = [];
+    const nodeCount = 30;
+    
+    // Generate nodes with some clustering around center
+    for (let i = 0; i < nodeCount; i++) {
+        let x, y;
+        
+        // Create some clusters for more interesting patterns
+        if (i < 10) {
+            // Center cluster
+            x = 960 + (Math.random() - 0.5) * 400;
+            y = 540 + (Math.random() - 0.5) * 300;
+        } else if (i < 20) {
+            // Corner clusters
+            const corner = Math.floor(Math.random() * 4);
+            switch (corner) {
+                case 0: // Top-left
+                    x = 200 + Math.random() * 300;
+                    y = 150 + Math.random() * 200;
+                    break;
+                case 1: // Top-right
+                    x = 1420 + Math.random() * 300;
+                    y = 150 + Math.random() * 200;
+                    break;
+                case 2: // Bottom-left
+                    x = 200 + Math.random() * 300;
+                    y = 730 + Math.random() * 200;
+                    break;
+                case 3: // Bottom-right
+                    x = 1420 + Math.random() * 300;
+                    y = 730 + Math.random() * 200;
+                    break;
+            }
+        } else {
+            // Random scattered nodes
+            x = Math.random() * 1920;
+            y = Math.random() * 1080;
+        }
+        
+        const node = {
+            id: i,
+            x: x,
+            y: y,
+            vx: (Math.random() - 0.5) * 0.2,
+            vy: (Math.random() - 0.5) * 0.2,
+            connections: []
+        };
+        nodes.push(node);
+        
+        // Create SVG circle for node
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', node.x);
+        circle.setAttribute('cy', node.y);
+        circle.setAttribute('r', '2');
+        circle.classList.add('neural-node');
+        circle.setAttribute('data-node-id', i);
+        neuralSvg.appendChild(circle);
+    }
+    
+    // Create connections between nearby nodes
+    function createConnections() {
+        // Remove existing connections
+        const existingConnections = neuralSvg.querySelectorAll('.neural-connection');
+        existingConnections.forEach(conn => conn.remove());
+        
+        // Create new connections
+        for (let i = 0; i < nodes.length; i++) {
+            for (let j = i + 1; j < nodes.length; j++) {
+                const distance = Math.sqrt(
+                    Math.pow(nodes[i].x - nodes[j].x, 2) + 
+                    Math.pow(nodes[i].y - nodes[j].y, 2)
+                );
+                
+                // Connect nodes that are close enough (spider web effect)
+                if (distance < 250) {
+                    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    line.setAttribute('x1', nodes[i].x);
+                    line.setAttribute('y1', nodes[i].y);
+                    line.setAttribute('x2', nodes[j].x);
+                    line.setAttribute('y2', nodes[j].y);
+                    line.classList.add('neural-connection');
+                    line.style.strokeDashoffset = Math.random() * 10;
+                    neuralSvg.appendChild(line);
+                }
+            }
+        }
+    }
+    
+    // Animate nodes (subtle movement)
+    function animateNodes() {
+        nodes.forEach(node => {
+            // Update position with subtle movement
+            node.x += node.vx;
+            node.y += node.vy;
+            
+            // Gentle boundary bouncing
+            if (node.x < 50 || node.x > 1870) node.vx *= -0.8;
+            if (node.y < 50 || node.y > 1030) node.vy *= -0.8;
+            
+            // Keep nodes within bounds
+            node.x = Math.max(50, Math.min(1870, node.x));
+            node.y = Math.max(50, Math.min(1030, node.y));
+            
+            // Update SVG circle position
+            const circle = neuralSvg.querySelector(`[data-node-id="${node.id}"]`);
+            if (circle) {
+                circle.setAttribute('cx', node.x);
+                circle.setAttribute('cy', node.y);
+            }
+        });
+        
+        // Update connections
+        createConnections();
+        
+        // Continue animation
+        requestAnimationFrame(animateNodes);
+    }
+    
+    // Start animation
+    animateNodes();
+    
+    // Adjust for mobile devices
+    if (isMobileDevice()) {
+        // Reduce animation intensity on mobile
+        neuralSvg.style.opacity = '0.2';
+    }
+    
+    // Pause animation when page is not visible (performance optimization)
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            neuralSvg.style.animationPlayState = 'paused';
+        } else {
+            neuralSvg.style.animationPlayState = 'running';
+        }
+    });
+}
+
+// Neuralink-style interface where mouse moves naturally within neural network
+function initNeuralinkInterface() {
+    const neuralSvg = document.querySelector('.neural-svg');
+    if (!neuralSvg) return;
+
+    let mouseNode = null;
+    let neuralNodes = [];
+    let neuralConnections = [];
+    let isMouseInNeuralSpace = false;
+
+    // Create mouse cursor node
+    function createMouseNode() {
+        mouseNode = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        mouseNode.setAttribute('class', 'neuralink-mouse-node');
+        mouseNode.setAttribute('r', '4');
+        mouseNode.setAttribute('fill', '#6b7280');
+        mouseNode.setAttribute('opacity', '1');
+        mouseNode.setAttribute('filter', 'drop-shadow(0 0 12px #6b7280)');
+        mouseNode.setAttribute('animation', 'pulse 1.5s ease-in-out infinite');
+        mouseNode.style.display = 'none';
+        neuralSvg.appendChild(mouseNode);
+    }
+
+    // Generate neural network nodes around the page
+    function generateNeuralNodes() {
+        const nodeCount = 50;
+        for (let i = 0; i < nodeCount; i++) {
+            const node = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            const x = Math.random() * 1920;
+            const y = Math.random() * 1080;
+            
+            node.setAttribute('class', 'neuralink-static-node');
+            node.setAttribute('cx', x);
+            node.setAttribute('cy', y);
+            node.setAttribute('r', '2');
+            node.setAttribute('fill', '#9ca3af');
+            node.setAttribute('opacity', '0.7');
+            node.setAttribute('filter', 'drop-shadow(0 0 6px #9ca3af)');
+            node.setAttribute('animation', 'pulse 3s ease-in-out infinite');
+            
+            neuralSvg.appendChild(node);
+            neuralNodes.push({ element: node, x, y });
+        }
+    }
+
+    // Create connections between nearby nodes
+    function createNeuralConnections() {
+        neuralNodes.forEach((node1, i) => {
+            neuralNodes.forEach((node2, j) => {
+                if (i !== j) {
+                    const distance = Math.sqrt((node1.x - node2.x) ** 2 + (node1.y - node2.y) ** 2);
+                    
+                    // Connect nodes within 200px
+                    if (distance < 200) {
+                        const connection = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                        connection.setAttribute('class', 'neuralink-connection');
+                        connection.setAttribute('x1', node1.x);
+                        connection.setAttribute('y1', node1.y);
+                        connection.setAttribute('x2', node2.x);
+                        connection.setAttribute('y2', node2.y);
+                        connection.setAttribute('stroke', '#9ca3af');
+                        connection.setAttribute('stroke-width', '1');
+                        connection.setAttribute('opacity', '0.4');
+                        connection.setAttribute('filter', 'drop-shadow(0 0 4px #9ca3af)');
+                        connection.setAttribute('stroke-dasharray', '2,4');
+                        connection.setAttribute('animation', 'flow 4s linear infinite');
+                        
+                        neuralSvg.appendChild(connection);
+                        neuralConnections.push(connection);
+                    }
+                }
+            });
+        });
+    }
+
+    // Get theme-aware colors
+    function getThemeColors() {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        return {
+            mouseNode: isDark ? '#d1d5db' : '#6b7280',
+            staticNode: isDark ? '#e5e7eb' : '#9ca3af',
+            connection: isDark ? '#e5e7eb' : '#9ca3af',
+            mouseConnection: isDark ? '#d1d5db' : '#6b7280'
+        };
+    }
+
+    // Update colors based on theme
+    function updateColors() {
+        const colors = getThemeColors();
+        
+        if (mouseNode) {
+            mouseNode.setAttribute('fill', colors.mouseNode);
+            mouseNode.setAttribute('filter', `drop-shadow(0 0 12px ${colors.mouseNode})`);
+        }
+        
+        neuralNodes.forEach(node => {
+            node.element.setAttribute('fill', colors.staticNode);
+            node.element.setAttribute('filter', `drop-shadow(0 0 6px ${colors.staticNode})`);
+        });
+        
+        neuralConnections.forEach(connection => {
+            connection.setAttribute('stroke', colors.connection);
+            connection.setAttribute('filter', `drop-shadow(0 0 4px ${colors.connection})`);
+        });
+    }
+
+    // Mouse move handler - mouse becomes part of neural network
+    function handleMouseMove(event) {
+        const rect = neuralSvg.getBoundingClientRect();
+        const x = ((event.clientX - rect.left) / rect.width) * 1920;
+        const y = ((event.clientY - rect.top) / rect.height) * 1080;
+
+        if (mouseNode) {
+            mouseNode.setAttribute('cx', x);
+            mouseNode.setAttribute('cy', y);
+            mouseNode.style.display = 'block';
+        }
+
+        // Connect mouse to nearby neural nodes
+        connectMouseToNeuralNodes(x, y);
+    }
+
+    // Connect mouse node to nearby neural nodes
+    function connectMouseToNeuralNodes(mouseX, mouseY) {
+        // Remove existing mouse connections
+        const existingMouseConnections = neuralSvg.querySelectorAll('.neuralink-mouse-connection');
+        existingMouseConnections.forEach(conn => conn.remove());
+
+        const colors = getThemeColors();
+        
+        neuralNodes.forEach(node => {
+            const distance = Math.sqrt((mouseX - node.x) ** 2 + (mouseY - node.y) ** 2);
+            
+            // Connect to nodes within 150px
+            if (distance < 150) {
+                const connection = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                connection.setAttribute('class', 'neuralink-mouse-connection');
+                connection.setAttribute('x1', mouseX);
+                connection.setAttribute('y1', mouseY);
+                connection.setAttribute('x2', node.x);
+                connection.setAttribute('y2', node.y);
+                connection.setAttribute('stroke', colors.mouseConnection);
+                connection.setAttribute('stroke-width', '2');
+                connection.setAttribute('opacity', '0.8');
+                connection.setAttribute('filter', `drop-shadow(0 0 8px ${colors.mouseConnection})`);
+                connection.setAttribute('stroke-dasharray', '3,3');
+                connection.setAttribute('animation', 'flow 2s linear infinite');
+                
+                neuralSvg.appendChild(connection);
+            }
+        });
+    }
+
+    // Mouse enter/leave handlers
+    function handleMouseEnter() {
+        isMouseInNeuralSpace = true;
+        if (mouseNode) {
+            mouseNode.style.display = 'block';
+        }
+    }
+
+    function handleMouseLeave() {
+        isMouseInNeuralSpace = false;
+        if (mouseNode) {
+            mouseNode.style.display = 'none';
+        }
+        // Remove mouse connections when leaving
+        const mouseConnections = neuralSvg.querySelectorAll('.neuralink-mouse-connection');
+        mouseConnections.forEach(conn => conn.remove());
+    }
+
+    // Initialize the neuralink interface
+    createMouseNode();
+    generateNeuralNodes();
+    createNeuralConnections();
+    updateColors(); // Set initial colors based on current theme
+
+    // Add event listeners
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseenter', handleMouseEnter);
+    document.addEventListener('mouseleave', handleMouseLeave);
+    
+    // Listen for theme changes
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+                updateColors();
+            }
+        });
+    });
+    observer.observe(document.documentElement, { attributes: true });
+}
+
+// Initialize neural network hover effects
+function initNeuralHoverEffects() {
+    const neuralSvg = document.querySelector('.neural-svg');
+    if (!neuralSvg) return;
+
+    // Add hover effects to all neural elements
+    const nodes = neuralSvg.querySelectorAll('.neural-node');
+    const connections = neuralSvg.querySelectorAll('.neural-connection');
+    const outlines = neuralSvg.querySelectorAll('.chess-outline');
+
+    // Enhanced hover effects for nodes
+    nodes.forEach(node => {
+        node.addEventListener('mouseenter', function() {
+            this.style.animation = 'hoverPulse 0.8s ease-in-out infinite';
+            this.style.transform = 'scale(1.2)';
+            this.style.filter = 'drop-shadow(0 0 25px #ff6b35)';
+        });
+
+        node.addEventListener('mouseleave', function() {
+            this.style.animation = 'pulse 3s ease-in-out infinite';
+            this.style.transform = 'scale(1)';
+            this.style.filter = 'drop-shadow(0 0 12px #ff6b35)';
+        });
+    });
+
+    // Enhanced hover effects for connections
+    connections.forEach(connection => {
+        connection.addEventListener('mouseenter', function() {
+            this.style.animation = 'hoverFlow 0.6s linear infinite';
+            this.style.strokeWidth = '4';
+            this.style.opacity = '1';
+            this.style.filter = 'drop-shadow(0 0 20px #ff6b35)';
+        });
+
+        connection.addEventListener('mouseleave', function() {
+            this.style.animation = 'flow 4s linear infinite';
+            this.style.strokeWidth = '3';
+            this.style.opacity = '0.9';
+            this.style.filter = 'drop-shadow(0 0 10px #ff6b35)';
+        });
+    });
+
+    // Enhanced hover effects for chess outlines
+    outlines.forEach(outline => {
+        outline.addEventListener('mouseenter', function() {
+            this.style.animation = 'hoverOutline 0.8s ease-in-out infinite';
+            this.style.strokeWidth = '4';
+            this.style.opacity = '1';
+            this.style.filter = 'drop-shadow(0 0 25px #8b5cf6)';
+        });
+
+        outline.addEventListener('mouseleave', function() {
+            this.style.animation = 'outlineGlow 6s ease-in-out infinite';
+            this.style.strokeWidth = '3';
+            this.style.opacity = '0.8';
+            this.style.filter = 'drop-shadow(0 0 12px #8b5cf6)';
+        });
+    });
+}
+
+// Initialize neural network
+document.addEventListener('DOMContentLoaded', function() {
+    initNeuralNetwork();
+    initNeuralHoverEffects();
+    initNeuralinkInterface();
+});

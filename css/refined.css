@@ -1,6 +1,288 @@
 /* Refined Portfolio - Apple + Tokyo + Alpenglow */
 /* Premium, artistic, and futuristic with Apple elegance and Tokyo soul */
 
+/* Neural Network Background Animation */
+.neural-network {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: auto;
+  overflow: hidden;
+}
+
+.neural-svg {
+  width: 100%;
+  height: 100%;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+  pointer-events: auto;
+}
+
+/* Override inline styles for theme consistency */
+.neural-svg .neural-node {
+  fill: #69a08e !important;
+  opacity: 1 !important;
+  filter: drop-shadow(0 0 12px #69a08e) !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+.neural-svg .neural-node:hover {
+  animation: hoverPulse 0.8s ease-in-out infinite !important;
+  transform: scale(1.2) !important;
+}
+
+.neural-svg .neural-connection {
+  stroke: #69a08e !important;
+  stroke-width: 3 !important;
+  opacity: 0.9 !important;
+  filter: drop-shadow(0 0 10px #69a08e) !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+.neural-svg .neural-connection:hover {
+  animation: hoverFlow 0.6s linear infinite !important;
+  stroke-width: 4 !important;
+  opacity: 1 !important;
+}
+
+.neural-svg .chess-outline {
+  stroke: #8b5cf6 !important;
+  opacity: 0.8 !important;
+  filter: drop-shadow(0 0 12px #8b5cf6) !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+.neural-svg .chess-outline:hover {
+  animation: hoverOutline 0.8s ease-in-out infinite !important;
+  stroke-width: 4 !important;
+  opacity: 1 !important;
+}
+
+/* Dark mode neural network */
+[data-theme="dark"] .neural-svg {
+  opacity: 1;
+}
+
+[data-theme="dark"] .neural-svg .neural-node {
+  fill: #69a08e !important;
+  opacity: 1 !important;
+  filter: drop-shadow(0 0 15px #69a08e) !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+[data-theme="dark"] .neural-svg .neural-node:hover {
+  animation: hoverPulse 0.8s ease-in-out infinite !important;
+  transform: scale(1.3) !important;
+  filter: drop-shadow(0 0 20px #69a08e) !important;
+}
+
+[data-theme="dark"] .neural-svg .neural-connection {
+  stroke: #69a08e !important;
+  stroke-width: 3.5 !important;
+  opacity: 1 !important;
+  filter: drop-shadow(0 0 12px #69a08e) !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+[data-theme="dark"] .neural-svg .neural-connection:hover {
+  animation: hoverFlow 0.6s linear infinite !important;
+  stroke-width: 5 !important;
+  filter: drop-shadow(0 0 18px #69a08e) !important;
+}
+
+[data-theme="dark"] .neural-svg .chess-outline {
+  stroke: #8b5cf6 !important;
+  opacity: 0.9 !important;
+  filter: drop-shadow(0 0 15px #8b5cf6) !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+[data-theme="dark"] .neural-svg .chess-outline:hover {
+  animation: hoverOutline 0.8s ease-in-out infinite !important;
+  stroke-width: 5 !important;
+  filter: drop-shadow(0 0 20px #8b5cf6) !important;
+}
+
+/* Ensure main content appears above neural network */
+main, section, .container, .hero, .navbar, .footer {
+  position: relative;
+  z-index: 10;
+}
+
+/* Neural network animations */
+@keyframes neuralPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: drop-shadow(0 0 12px #69a08e);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.4);
+    filter: drop-shadow(0 0 20px #69a08e);
+  }
+}
+
+@keyframes neuralFlow {
+  0% {
+    stroke-dashoffset: 0;
+    opacity: 0.9;
+    filter: drop-shadow(0 0 10px #69a08e);
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 15px #69a08e);
+  }
+  100% {
+    stroke-dashoffset: 10;
+    opacity: 0.9;
+    filter: drop-shadow(0 0 10px #69a08e);
+  }
+}
+
+@keyframes hoverPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 15px #69a08e);
+  }
+  50% {
+    transform: scale(1.6);
+    filter: drop-shadow(0 0 25px #69a08e);
+  }
+}
+
+@keyframes hoverFlow {
+  0% {
+    stroke-dashoffset: 0;
+    filter: drop-shadow(0 0 15px #69a08e);
+  }
+  50% {
+    filter: drop-shadow(0 0 20px #69a08e);
+  }
+  100% {
+    stroke-dashoffset: 20;
+    filter: drop-shadow(0 0 15px #69a08e);
+  }
+}
+
+@keyframes hoverOutline {
+  0%, 100% {
+    filter: drop-shadow(0 0 15px #8b5cf6);
+  }
+  50% {
+    filter: drop-shadow(0 0 25px #8b5cf6);
+  }
+}
+
+/* Neuralink Interface Styles */
+.neuralink-mouse-node {
+  fill: #6b7280 !important;
+  opacity: 1 !important;
+  filter: drop-shadow(0 0 12px #6b7280) !important;
+  animation: pulse 1.5s ease-in-out infinite !important;
+  transition: all 0.2s ease !important;
+}
+
+.neuralink-static-node {
+  fill: #9ca3af !important;
+  opacity: 0.7 !important;
+  filter: drop-shadow(0 0 6px #9ca3af) !important;
+  animation: pulse 3s ease-in-out infinite !important;
+  transition: all 0.3s ease !important;
+}
+
+.neuralink-connection {
+  stroke: #9ca3af !important;
+  stroke-width: 1 !important;
+  opacity: 0.4 !important;
+  filter: drop-shadow(0 0 4px #9ca3af) !important;
+  stroke-dasharray: 2,4 !important;
+  animation: flow 4s linear infinite !important;
+}
+
+.neuralink-mouse-connection {
+  stroke: #6b7280 !important;
+  stroke-width: 2 !important;
+  opacity: 0.8 !important;
+  filter: drop-shadow(0 0 8px #6b7280) !important;
+  stroke-dasharray: 3,3 !important;
+  animation: flow 2s linear infinite !important;
+  transition: all 0.2s ease !important;
+}
+
+.neuralink-static-node:hover {
+  animation: hoverPulse 0.8s ease-in-out infinite !important;
+  transform: scale(1.3) !important;
+  filter: drop-shadow(0 0 10px #9ca3af) !important;
+  opacity: 1 !important;
+}
+
+/* Dark mode Neuralink adjustments */
+[data-theme="dark"] .neuralink-mouse-node {
+  fill: #d1d5db !important;
+  filter: drop-shadow(0 0 12px #d1d5db) !important;
+}
+
+[data-theme="dark"] .neuralink-static-node {
+  fill: #e5e7eb !important;
+  filter: drop-shadow(0 0 6px #e5e7eb) !important;
+}
+
+[data-theme="dark"] .neuralink-connection {
+  stroke: #e5e7eb !important;
+  filter: drop-shadow(0 0 4px #e5e7eb) !important;
+}
+
+[data-theme="dark"] .neuralink-mouse-connection {
+  stroke: #d1d5db !important;
+  filter: drop-shadow(0 0 8px #d1d5db) !important;
+}
+
+[data-theme="dark"] .neuralink-static-node:hover {
+  filter: drop-shadow(0 0 10px #e5e7eb) !important;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .neural-svg {
+    opacity: 0.2;
+  }
+  
+  .neural-node {
+    animation-duration: 6s;
+  }
+  
+  .neural-connection {
+    stroke-width: 0.5;
+    animation-duration: 8s;
+  }
+}
+
+@media (max-width: 480px) {
+  .neural-svg {
+    opacity: 0.15;
+  }
+  
+  .neural-node {
+    animation: none;
+    opacity: 0.4;
+  }
+  
+  .neural-connection {
+    animation: none;
+    opacity: 0.3;
+  }
+}
+
 /* Loading Indicator */
 .loading-indicator {
   position: fixed;
