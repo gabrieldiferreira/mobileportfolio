@@ -1429,9 +1429,63 @@ function initNeuralHoverEffects() {
     });
 }
 
+// Apps Showcase Functionality
+function initAppsShowcase() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const appCards = document.querySelectorAll('.app-card');
+    
+    // Filter functionality
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            // Add active class to clicked button
+            button.classList.add('active');
+            
+            const filter = button.getAttribute('data-filter');
+            
+            // Filter app cards
+            appCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                
+                if (filter === 'all' || category === filter) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeInUp 0.5s ease forwards';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+    
+    // App card hover effects
+    appCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-8px)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+        });
+    });
+    
+    // App link click tracking (for analytics)
+    const appLinks = document.querySelectorAll('.app-link');
+    appLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const appName = link.closest('.app-card').querySelector('.app-title').textContent;
+            const store = link.classList.contains('ios-link') ? 'App Store' : 'Google Play';
+            
+            console.log(`App clicked: ${appName} - ${store}`);
+            // Here you could add analytics tracking
+        });
+    });
+}
+
 // Initialize neural network
 document.addEventListener('DOMContentLoaded', function() {
     initNeuralNetwork();
     initNeuralHoverEffects();
     initNeuralinkInterface();
+    initAppsShowcase();
 });
