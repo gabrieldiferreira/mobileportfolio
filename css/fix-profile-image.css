@@ -1,0 +1,114 @@
+/* 
+ * Fix Profile Image - Remove all pink/rose effects
+ * This file has highest priority to override any conflicting styles
+ */
+
+/* Force remove all backgrounds, borders, and effects from profile image */
+.profile-image {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  border-color: transparent !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+  animation: none !important;
+  outline: none !important;
+}
+
+.profile-image:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+}
+
+/* Remove all pseudo-elements */
+.profile-image::before,
+.profile-image::after {
+  display: none !important;
+  content: "" !important;
+  background: none !important;
+  background-image: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Remove all effects from container */
+.profile-image-container {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+.profile-image-container::before,
+.profile-image-container::after {
+  display: none !important;
+  content: "" !important;
+  background: none !important;
+}
+
+/* Remove all effects from card */
+.profile-card {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+.profile-card::before,
+.profile-card::after {
+  display: none !important;
+  content: "" !important;
+  background: none !important;
+}
+
+/* Completely hide profile glow */
+.profile-glow,
+.profile-glow::before,
+.profile-glow::after {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: none !important;
+  background-image: none !important;
+}
+
+/* Remove any gradient overlays */
+.hero-visual {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+.hero-visual::before,
+.hero-visual::after {
+  display: none !important;
+  content: "" !important;
+  background: none !important;
+}
+
+/* Remove pink color from tech icons near profile */
+.tech-icon.ai {
+  color: var(--aurora-cyan) !important;
+  background: var(--glass-bg) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.tech-icon {
+  background: var(--glass-bg) !important;
+  border-color: var(--glass-border) !important;
+}
+
+/* Ensure no pink colors appear near profile */
+.tech-icon.ai,
+.tech-icon[class*="pink"],
+.tech-icon[style*="pink"],
+.tech-icon[style*="#EC4899"],
+.tech-icon[style*="#ff0080"] {
+  color: var(--aurora-cyan) !important;
+  background: var(--glass-bg) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  filter: none !important;
+}
+

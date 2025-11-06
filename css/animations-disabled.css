@@ -1,0 +1,152 @@
+/* 
+ * Disable Heavy Animations - Performance Optimization
+ * This file overrides heavy animations while maintaining design
+ */
+
+/* Disable infinite animations - override with empty keyframes */
+@keyframes breathing-glow { from { opacity: 1; } to { opacity: 1; } }
+@keyframes aurora-glow { from { opacity: 1; } to { opacity: 1; } }
+@keyframes orb-pulse { from { transform: scale(1); } to { transform: scale(1); } }
+@keyframes orb-float { from { transform: translate(0, 0); } to { transform: translate(0, 0); } }
+@keyframes float { from { transform: translateY(0); } to { transform: translateY(0); } }
+@keyframes grid-move { from { transform: translate(0, 0); } to { transform: translate(0, 0); } }
+@keyframes glow-pulse { from { opacity: 1; } to { opacity: 1; } }
+@keyframes smooth-scale { from { transform: scale(1); } to { transform: scale(1); } }
+@keyframes refined-float { from { transform: translateY(0); } to { transform: translateY(0); } }
+@keyframes refined-ripple { from { transform: scale(1); opacity: 0; } to { transform: scale(1); opacity: 0; } }
+@keyframes glassmorphism-glow { from { opacity: 1; } to { opacity: 1; } }
+@keyframes glassmorphism-pulse { from { opacity: 1; } to { opacity: 1; } }
+@keyframes typewriter-blink { from { opacity: 1; } to { opacity: 1; } }
+
+/* Disable neural network animations */
+.neural-network,
+.neural-svg,
+.neural-node,
+.neural-connection {
+  display: none !important;
+  animation: none !important;
+}
+
+/* Disable particle animations */
+.floating-particle-refined,
+.particle-refined,
+.floating-particle,
+.particle {
+  display: none !important;
+  animation: none !important;
+}
+
+/* Simplify profile image animations - Remove all backgrounds and borders */
+.profile-image {
+  animation: none !important;
+  background: none !important;
+  border: none !important;
+  background-image: none !important;
+  object-fit: cover !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+}
+
+.profile-image:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+}
+
+/* Completely hide profile glow element */
+.profile-glow {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  background: none !important;
+  background-image: none !important;
+}
+
+/* Remove any gradient backgrounds from profile container */
+.profile-image-container {
+  background: none !important;
+  background-image: none !important;
+}
+
+.profile-image-container::before,
+.profile-image-container::after {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+}
+
+.profile-card {
+  background: none !important;
+  background-image: none !important;
+}
+
+.profile-card::before,
+.profile-card::after {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+}
+
+.profile-image::before,
+.profile-image::after {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+}
+
+/* Disable heavy parallax */
+.parallax-slow,
+.parallax-medium,
+.parallax-fast {
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Keep simple hover effects (lightweight) */
+.hover-lift:hover,
+.hover-scale:hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+/* Disable breathing cursor */
+.breathing-cursor,
+.cursor-trail {
+  display: none !important;
+}
+
+/* Simplify scroll animations - keep but make instant */
+.scroll-animate {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: opacity 0.3s ease !important;
+}
+
+.scroll-animate.animate-in {
+  opacity: 1 !important;
+}
+
+/* Disable typewriter cursor animation */
+.typewriter-cursor {
+  animation: none !important;
+  opacity: 1 !important;
+}
+
+/* Keep simple transitions but remove heavy animations */
+* {
+  animation-duration: 0s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.2s !important;
+  transition-timing-function: ease !important;
+}
+
+/* Exception: Keep loading spinner (lightweight) */
+.loading-spinner {
+  animation: spin 1s linear infinite !important;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+

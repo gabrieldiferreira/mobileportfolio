@@ -2049,29 +2049,31 @@ body {
   width: 180px;
   height: 180px;
   border-radius: 50%;
-  border: 3px solid var(--glass-border);
-  box-shadow: var(--glass-shadow-strong);
+  border: none !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  animation: breathing-glow 4s ease-in-out infinite;
+  animation: none !important;
+  object-fit: cover;
+  background: none !important;
+  background-image: none !important;
+}
+
+.profile-image::before,
+.profile-image::after {
+  display: none !important;
+  content: none !important;
+  background: none !important;
 }
 
 .profile-image:hover {
   transform: scale(1.02);
-  box-shadow: var(--glow-aurora);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .profile-glow {
-  position: absolute;
-  top: -40px;
-  left: -40px;
-  right: -40px;
-  bottom: -40px;
-  border-radius: 50%;
-  background: var(--gradient-aurora-subtle);
-  opacity: 0.3;
-  filter: blur(40px);
-  z-index: -1;
-  animation: smooth-scale 6s ease-in-out infinite;
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
 }
 
 /* Floating Tech Icons - Apple Refined */
@@ -2128,7 +2130,7 @@ body {
 .tech-icon.ai {
   bottom: 5%;
   right: 5%;
-  color: var(--aurora-pink);
+  color: var(--aurora-cyan);
   animation-delay: -6s;
 }
 

@@ -29,14 +29,14 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initRefinedFeatures() {
-    // Breathing cursor with Apple-like smoothness
-    initBreathingCursor();
+    // Breathing cursor - DISABLED for performance
+    // initBreathingCursor();
     
-    // Refined particle system
-    initRefinedParticles();
+    // Refined particle system - DISABLED for performance
+    // initRefinedParticles();
     
-    // Apple-style scroll effects
-    initAppleScrollEffects();
+    // Apple-style scroll effects - DISABLED for performance
+    // initAppleScrollEffects();
     
     // Interactive project cards with refined glow
     initRefinedProjectCards();
@@ -403,11 +403,15 @@ function initBreathingCursor() {
 }
 
 function initRefinedParticles() {
-    // Create additional refined floating particles
+    // Create additional refined floating particles - Reduced count for performance
     const particleContainer = document.querySelector('.refined-particles');
     if (!particleContainer) return;
     
-    for (let i = 0; i < 8; i++) {
+    // Reduce particle count on mobile or if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const particleCount = (isMobileDevice() || prefersReducedMotion) ? 3 : 5;
+    
+    for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.className = 'floating-particle-refined';
         particle.style.cssText = `
@@ -422,6 +426,7 @@ function initRefinedParticles() {
             top: ${Math.random() * 100}%;
             left: ${Math.random() * 100}%;
             filter: blur(0.5px);
+            will-change: transform;
         `;
         particleContainer.appendChild(particle);
     }
@@ -433,22 +438,52 @@ function getRefinedAuroraColor() {
 }
 
 function initAppleScrollEffects() {
-    // Apple-style parallax with smooth easing
-    window.addEventListener('scroll', throttle(() => {
+    // Apple-style parallax with smooth easing - Optimized
+    const particles = document.querySelectorAll('.particle-refined, .floating-particle-refined');
+    const tokyoLines = document.querySelectorAll('.tokyo-line');
+    
+    // Optimize for GPU acceleration
+    [...particles, ...tokyoLines].forEach(el => {
+        el.style.willChange = 'transform';
+        el.style.backfaceVisibility = 'hidden';
+    });
+    
+    let ticking = false;
+    let lastScrollY = 0;
+    
+    function updateScrollEffects() {
         const scrolled = window.pageYOffset;
-        const particles = document.querySelectorAll('.particle-refined, .floating-particle-refined');
-        const tokyoLines = document.querySelectorAll('.tokyo-line');
+        
+        // Skip if scroll hasn't changed much
+        if (Math.abs(scrolled - lastScrollY) < 1) {
+            ticking = false;
+            return;
+        }
+        
+        lastScrollY = scrolled;
         
         particles.forEach((particle, index) => {
             const speed = 0.1 + (index * 0.02);
-            particle.style.transform = `translateY(${scrolled * speed}px)`;
+            particle.style.transform = `translate3d(0, ${scrolled * speed}px, 0)`;
         });
         
         tokyoLines.forEach((line, index) => {
             const speed = 0.05 + (index * 0.02);
-            line.style.transform = `translateY(${scrolled * speed}px)`;
+            line.style.transform = `translate3d(0, ${scrolled * speed}px, 0)`;
         });
-    }, 16));
+        
+        ticking = false;
+    }
+    
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(updateScrollEffects);
+            ticking = true;
+        }
+    }
+    
+    // Use passive listener
+    window.addEventListener('scroll', requestTick, { passive: true });
 }
 
 function initRefinedProjectCards() {
@@ -619,10 +654,10 @@ window.addEventListener('load', () => {
         }, index * 200);
     });
     
-    // Initialize refined particles
-    setTimeout(() => {
-        initRefinedParticles();
-    }, 1000);
+    // Initialize refined particles - DISABLED for performance
+    // setTimeout(() => {
+    //     initRefinedParticles();
+    // }, 1000);
 });
 
 // Add keyboard navigation support with refined focus
@@ -667,34 +702,8 @@ refinedStyle.textContent = `
 `;
 document.head.appendChild(refinedStyle);
 
-// Refined performance monitoring
-let frameCount = 0;
-let lastTime = performance.now();
-
-function monitorRefinedPerformance() {
-    frameCount++;
-    const currentTime = performance.now();
-    
-    if (currentTime - lastTime >= 1000) {
-        const fps = Math.round((frameCount * 1000) / (currentTime - lastTime));
-        
-        // Reduce particle count if FPS is low
-        if (fps < 30) {
-            const particles = document.querySelectorAll('.floating-particle-refined');
-            if (particles.length > 5) {
-                particles[particles.length - 1].remove();
-            }
-        }
-        
-        frameCount = 0;
-        lastTime = currentTime;
-    }
-    
-    requestAnimationFrame(monitorRefinedPerformance);
-}
-
-// Start refined performance monitoring
-requestAnimationFrame(monitorRefinedPerformance);
+// Refined performance monitoring - DISABLED (no heavy animations to monitor)
+// Performance monitoring removed as all heavy animations are disabled
 
 // Scroll Animations - Apple/Wix Inspired
 function initScrollAnimations() {
@@ -737,38 +746,11 @@ function initScrollAnimations() {
     });
 }
 
-// Parallax Effects
+// Parallax Effects - DISABLED for performance
 function initParallaxEffects() {
-    const parallaxElements = document.querySelectorAll('.parallax-slow, .parallax-medium, .parallax-fast');
-    
-    if (parallaxElements.length === 0) return;
-
-    function updateParallax() {
-        const scrolled = window.pageYOffset;
-        const rate = scrolled * -0.5;
-
-        parallaxElements.forEach(el => {
-            const speed = el.classList.contains('parallax-slow') ? 0.3 : 
-                         el.classList.contains('parallax-medium') ? 0.5 : 0.7;
-            
-            const yPos = -(scrolled * speed);
-            el.style.transform = `translateY(${yPos}px)`;
-        });
-    }
-
-    // Throttle parallax updates for performance
-    let ticking = false;
-    function requestTick() {
-        if (!ticking) {
-            requestAnimationFrame(updateParallax);
-            ticking = true;
-        }
-    }
-
-    window.addEventListener('scroll', () => {
-        requestTick();
-        ticking = false;
-    });
+    // Parallax disabled to improve performance
+    // All parallax elements remain static
+    return;
 }
 
 // Smooth scroll for anchor links
@@ -1003,8 +985,25 @@ function initNeuralNetwork() {
         }
     }
     
-    // Animate nodes (subtle movement)
-    function animateNodes() {
+    // Animate nodes (subtle movement) - Optimized
+    let animationRunning = true;
+    let lastFrameTime = performance.now();
+    const targetFPS = 30; // Reduce FPS for better performance
+    const frameInterval = 1000 / targetFPS;
+    
+    function animateNodes(currentTime) {
+        if (!animationRunning) return;
+        
+        const deltaTime = currentTime - lastFrameTime;
+        
+        // Throttle to target FPS
+        if (deltaTime < frameInterval) {
+            requestAnimationFrame(animateNodes);
+            return;
+        }
+        
+        lastFrameTime = currentTime - (deltaTime % frameInterval);
+        
         nodes.forEach(node => {
             // Update position with subtle movement
             node.x += node.vx;
@@ -1026,15 +1025,26 @@ function initNeuralNetwork() {
             }
         });
         
-        // Update connections
-        createConnections();
+        // Update connections less frequently (every 3 frames)
+        if (Math.floor(currentTime / (frameInterval * 3)) !== Math.floor((currentTime - deltaTime) / (frameInterval * 3))) {
+            createConnections();
+        }
         
         // Continue animation
         requestAnimationFrame(animateNodes);
     }
     
+    // Pause animation when page is not visible
+    document.addEventListener('visibilitychange', function() {
+        animationRunning = !document.hidden;
+        if (animationRunning) {
+            lastFrameTime = performance.now();
+            requestAnimationFrame(animateNodes);
+        }
+    });
+    
     // Start animation
-    animateNodes();
+    requestAnimationFrame(animateNodes);
     
     // Adjust for mobile devices
     if (isMobileDevice()) {
@@ -1337,10 +1347,13 @@ function initAppsShowcase() {
     });
 }
 
-// Initialize neural network
+// Initialize neural network - DISABLED for performance
 document.addEventListener('DOMContentLoaded', function() {
-    initNeuralNetwork();
-    initNeuralHoverEffects();
-    initNeuralinkInterface();
+    // Neural network and heavy animations disabled for better performance
+    // initNeuralNetwork();
+    // initNeuralHoverEffects();
+    // initNeuralinkInterface();
+    
+    // Apps showcase is lightweight, always initialize
     initAppsShowcase();
 });

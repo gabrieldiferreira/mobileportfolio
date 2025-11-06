@@ -12,8 +12,8 @@ function initHyperlandFeatures() {
     // Smooth scrolling for navigation links
     initSmoothScrolling();
     
-    // Parallax effects for floating elements
-    initParallaxEffects();
+    // Parallax effects - DISABLED for performance
+    // initParallaxEffects();
     
     // Interactive project cards
     initProjectCards();
@@ -21,8 +21,8 @@ function initHyperlandFeatures() {
     // Typing animation for hero text
     initTypingAnimation();
     
-    // Mouse follower effect
-    initMouseFollower();
+    // Mouse follower effect - DISABLED for performance
+    // initMouseFollower();
     
     // Scroll-triggered animations
     initScrollAnimations();
@@ -108,22 +108,9 @@ function initSmoothScrolling() {
 }
 
 function initParallaxEffects() {
-    // Parallax effect for floating shapes
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const shapes = document.querySelectorAll('.shape');
-        const orbs = document.querySelectorAll('.gradient-orb');
-        
-        shapes.forEach((shape, index) => {
-            const speed = 0.5 + (index * 0.1);
-            shape.style.transform = `translateY(${scrolled * speed}px)`;
-        });
-        
-        orbs.forEach((orb, index) => {
-            const speed = 0.3 + (index * 0.1);
-            orb.style.transform = `translateY(${scrolled * speed}px)`;
-        });
-    });
+    // Parallax effect - DISABLED for performance
+    // All elements remain static
+    return;
 }
 
 function initProjectCards() {
@@ -295,10 +282,10 @@ function throttle(func, wait) {
     };
 }
 
-// Apply throttling to scroll events
+// Apply throttling to scroll events - Optimized with passive listener
 window.addEventListener('scroll', throttle(() => {
     // Scroll-based effects can be added here
-}, 16)); // ~60fps
+}, 16), { passive: true }); // ~60fps
 
 // Add loading animation
 window.addEventListener('load', () => {

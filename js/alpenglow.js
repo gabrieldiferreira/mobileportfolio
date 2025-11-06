@@ -11,14 +11,14 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initAlpenglowFeatures() {
-    // Luminous cursor with aurora effects
-    initLuminousCursor();
+    // Luminous cursor - DISABLED for performance
+    // initLuminousCursor();
     
-    // Aurora particle system
-    initAuroraParticles();
+    // Aurora particle system - DISABLED for performance
+    // initAuroraParticles();
     
-    // Cosmic scroll effects
-    initCosmicScrollEffects();
+    // Cosmic scroll effects - DISABLED for performance
+    // initCosmicScrollEffects();
     
     // Interactive project cards with glow
     initGlowingProjectCards();
@@ -230,22 +230,9 @@ function getRandomAuroraColor() {
 }
 
 function initCosmicScrollEffects() {
-    // Parallax effect for aurora orbs and particles
-    window.addEventListener('scroll', throttle(() => {
-        const scrolled = window.pageYOffset;
-        const orbs = document.querySelectorAll('.aurora-orb');
-        const particles = document.querySelectorAll('.particle, .floating-particle');
-        
-        orbs.forEach((orb, index) => {
-            const speed = 0.2 + (index * 0.1);
-            orb.style.transform = `translateY(${scrolled * speed}px)`;
-        });
-        
-        particles.forEach((particle, index) => {
-            const speed = 0.3 + (index * 0.05);
-            particle.style.transform = `translateY(${scrolled * speed}px)`;
-        });
-    }, 16));
+    // Cosmic scroll effects - DISABLED for performance
+    // All elements remain static
+    return;
 }
 
 function initGlowingProjectCards() {
