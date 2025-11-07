@@ -12,17 +12,11 @@ function initHyperlandFeatures() {
     // Smooth scrolling for navigation links
     initSmoothScrolling();
     
-    // Parallax effects - DISABLED for performance
-    // initParallaxEffects();
-    
     // Interactive project cards
     initProjectCards();
     
     // Typing animation for hero text
     initTypingAnimation();
-    
-    // Mouse follower effect - DISABLED for performance
-    // initMouseFollower();
     
     // Scroll-triggered animations
     initScrollAnimations();

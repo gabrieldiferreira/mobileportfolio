@@ -1356,7 +1356,7 @@ main, section, .container, .hero, .navbar, .footer {
   --glass-shadow-strong: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
-/* Refined Background */
+/* Refined Background - Dark, Grainy, Vintage with Hyprland Feel */
 .refined-bg {
   position: fixed;
   top: 0;
@@ -1364,7 +1364,17 @@ main, section, .container, .hero, .navbar, .footer {
   width: 100%;
   height: 100%;
   z-index: -1;
-  background: #282a36; /* Dracula Background */
+  background: 
+    /* Grainy texture overlay */
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.3'/%3E%3C/svg%3E"),
+    /* Hyprland-style subtle gradients */
+    radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.05) 0%, transparent 70%),
+    /* Dark Hyprland base with vintage feel */
+    linear-gradient(135deg, #0f0f17 0%, #1a1a2e 20%, #16213e 40%, #1a1a2e 60%, #0f0f17 80%, #1a1a2e 100%);
+  background-size: 400px 400px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  background-attachment: fixed;
   overflow: hidden;
 }
 
@@ -1669,13 +1679,14 @@ main, section, .container, .hero, .navbar, .footer {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  opacity: 0.03;
+  opacity: 0.3; /* More visible for vintage look */
 }
 
 .tokyo-line {
   position: absolute;
-  background: var(--tokyo-red);
-  opacity: 0.1;
+  background: rgba(139, 92, 246, 0.2); /* Hyprland Purple */
+  opacity: 0.25;
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.15);
 }
 
 .tokyo-line-1 {
@@ -1710,38 +1721,43 @@ main, section, .container, .hero, .navbar, .footer {
 .particle-refined {
   position: absolute;
   border-radius: 50%;
-  opacity: 0.05;
+  opacity: 0.3; /* Subtle for Hyprland feel */
   animation: refined-float 20s infinite linear;
+  background: rgba(139, 92, 246, 0.3); /* Hyprland Purple */
+  box-shadow: 0 0 8px rgba(139, 92, 246, 0.2);
 }
 
 .particle-refined-1 {
-  width: 2px;
-  height: 2px;
-  background: var(--aurora-purple);
+  width: 4px;
+  height: 4px;
+  background: rgba(139, 92, 246, 0.4); /* Hyprland Purple */
   top: 20%;
   left: 10%;
   animation-delay: 0s;
+  box-shadow: 0 0 8px rgba(139, 92, 246, 0.3);
 }
 
 .particle-refined-2 {
   width: 3px;
   height: 3px;
-  background: var(--aurient-cyan);
+  background: rgba(6, 182, 212, 0.35); /* Hyprland Cyan */
   top: 60%;
   right: 15%;
   animation-delay: -5s;
+  box-shadow: 0 0 6px rgba(6, 182, 212, 0.25);
 }
 
 .particle-refined-3 {
   width: 2px;
   height: 2px;
-  background: var(--tokyo-red);
+  background: rgba(236, 72, 153, 0.4); /* Hyprland Pink */
   top: 80%;
   left: 20%;
   animation-delay: -10s;
+  box-shadow: 0 0 4px rgba(236, 72, 153, 0.3);
 }
 
-/* Apple-style Grid */
+/* Vintage Grid - Subtle with Hyprland accent */
 .apple-grid {
   position: absolute;
   top: 0;
@@ -1749,10 +1765,10 @@ main, section, .container, .hero, .navbar, .footer {
   width: 100%;
   height: 100%;
   background-image: 
-    linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+    linear-gradient(rgba(139, 92, 246, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.04) 1px, transparent 1px);
   background-size: 24px 24px;
-  opacity: 0.5;
+  opacity: 0.3;
 }
 
 /* Refined Animations */
@@ -2986,14 +3002,27 @@ body {
 
 /* Enhanced Footer - Apple Refined */
 .hyperland-footer {
-  background: rgba(40, 42, 54, 0.95); /* Dracula Background with high opacity */
-  backdrop-filter: blur(30px);
-  border-top: 2px solid rgba(189, 147, 249, 0.3); /* Dracula Purple border */
+  background: transparent;
+  backdrop-filter: none;
+  border-top: none;
   margin-top: var(--space-20);
   padding: var(--space-16) 0 var(--space-8);
+  box-shadow: none;
+}
+
+.hyperland-footer .section-card {
+  max-width: 100%;
+  margin: 0;
+  border-radius: 0;
+  padding: var(--space-16) var(--space-6);
+  background: var(--bg-cosmic);
   box-shadow: 
-    0 -10px 40px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(189, 147, 249, 0.1);
+    0 -20px 60px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(139, 92, 246, 0.2);
+}
+
+.hyperland-footer .section-card::before {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(6, 182, 212, 0.3));
 }
 
 .footer-content {
@@ -3001,7 +3030,7 @@ body {
   grid-template-columns: 2fr 1fr;
   gap: var(--space-16);
   margin-bottom: var(--space-12);
-  max-width: 1200px;
+  max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
   padding: 0 var(--space-6);
@@ -3032,17 +3061,15 @@ body {
   font-size: 1.75rem;
   font-weight: 700;
   font-family: var(--font-display);
-  background: var(--gradient-premium);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-primary);
   letter-spacing: -0.01em;
+  text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
 }
 
 .footer-description {
   font-size: 1.1rem;
   line-height: 1.6;
-  color: rgba(248, 248, 242, 0.85); /* Dracula Foreground - more visible */
+  color: var(--text-secondary);
   max-width: 500px;
   font-family: var(--font-body);
 }
@@ -3052,19 +3079,17 @@ body {
   align-items: center;
   gap: var(--space-3);
   padding: var(--space-3) var(--space-6);
-  background: rgba(189, 147, 249, 0.15); /* Dracula Purple background */
+  background: var(--glass-bg);
   backdrop-filter: blur(20px);
-  border: 2px solid rgba(189, 147, 249, 0.4); /* Dracula Purple border */
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-full);
-  color: rgba(248, 248, 242, 0.9); /* Dracula Foreground - visible */
+  color: var(--text-primary);
   text-decoration: none;
   font-weight: 500;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   width: fit-content;
   font-family: var(--font-body);
-  box-shadow: 
-    0 4px 12px rgba(189, 147, 249, 0.2),
-    0 0 0 1px rgba(189, 147, 249, 0.1);
+  box-shadow: var(--glass-shadow);
 }
 
 .footer-email i {
@@ -3073,7 +3098,7 @@ body {
 }
 
 .footer-email:hover {
-  background: var(--gradient-premium);
+  background: var(--gradient-aurora);
   color: white;
   transform: translateY(-2px);
   box-shadow: var(--glow-aurora);
@@ -3089,7 +3114,7 @@ body {
   font-size: 1.125rem;
   font-weight: 600;
   margin-bottom: var(--space-4);
-  color: rgba(248, 248, 242, 0.95); /* Dracula Foreground - more visible */
+  color: var(--text-primary);
   font-family: var(--font-display);
 }
 
@@ -3104,7 +3129,7 @@ body {
 }
 
 .footer-section a {
-  color: rgba(248, 248, 242, 0.75); /* Dracula Foreground - visible */
+  color: var(--text-secondary);
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-weight: 400;
@@ -3112,8 +3137,9 @@ body {
 }
 
 .footer-section a:hover {
-  color: var(--aurora-purple);
+  color: var(--aurora-cyan);
   transform: translateX(4px);
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
 }
 
 .footer-bottom {
@@ -3123,8 +3149,8 @@ body {
   justify-content: center;
   gap: var(--space-6);
   padding-top: var(--space-8);
-  border-top: 2px solid rgba(189, 147, 249, 0.3); /* Dracula Purple border */
-  max-width: 1200px;
+  border-top: 1px solid var(--glass-border);
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
   padding-left: var(--space-6);
@@ -3146,45 +3172,41 @@ body {
   justify-content: center;
   width: 52px;
   height: 52px;
-  background: rgba(189, 147, 249, 0.15); /* Dracula Purple background */
+  background: var(--glass-bg);
   backdrop-filter: blur(20px);
-  border: 2px solid rgba(189, 147, 249, 0.4); /* Dracula Purple border */
+  border: 1px solid var(--glass-border);
   border-radius: 50%;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
-  box-shadow: 
-    0 4px 12px rgba(189, 147, 249, 0.2),
-    0 0 0 1px rgba(189, 147, 249, 0.1);
+  box-shadow: var(--glass-shadow);
 }
 
 .social-link:hover {
-  background: linear-gradient(135deg, #bd93f9, #8be9fd); /* Dracula Purple to Cyan */
-  border-color: #bd93f9;
+  background: var(--gradient-aurora);
+  border-color: var(--aurora-purple);
   transform: translateY(-4px) scale(1.1);
-  box-shadow: 
-    0 8px 24px rgba(189, 147, 249, 0.4),
-    0 0 20px rgba(189, 147, 249, 0.3);
+  box-shadow: var(--glow-aurora);
 }
 
 .social-link img {
   width: 26px;
   height: 26px;
-  filter: brightness(0) saturate(100%) invert(67%) sepia(47%) saturate(2000%) hue-rotate(240deg) brightness(1.1) contrast(1.1); /* Dracula Purple filter */
+  filter: brightness(0) invert(1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .social-link:hover img {
-  filter: brightness(0) invert(1); /* White on hover */
+  filter: brightness(0) invert(1);
   transform: scale(1.1);
 }
 
 .footer-copyright {
   font-size: 0.9rem;
-  color: rgba(248, 248, 242, 0.9); /* Dracula Foreground - more visible */
+  color: var(--text-secondary);
   margin: 0;
   font-family: var(--font-body);
   font-weight: 500;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  text-shadow: none;
   text-align: center;
   letter-spacing: 0.01em;
 }

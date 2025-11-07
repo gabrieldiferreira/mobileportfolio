@@ -29,21 +29,11 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initRefinedFeatures() {
-    // Breathing cursor - DISABLED for performance
-    // initBreathingCursor();
-    
-    // Refined particle system - DISABLED for performance
-    // initRefinedParticles();
-    
-    // Apple-style scroll effects - DISABLED for performance
-    // initAppleScrollEffects();
-    
     // Interactive project cards with refined glow
     initRefinedProjectCards();
     
     // Typing animation with Apple smoothness
     initAppleTypingAnimation();
-    
     
     // Scroll-triggered refined animations
     initRefinedScrollAnimations();
@@ -1495,22 +1485,20 @@ function initAppsShowcase() {
     const appLinks = document.querySelectorAll('.app-link');
     appLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            const appName = link.closest('.app-card').querySelector('.app-title').textContent;
-            const store = link.classList.contains('ios-link') ? 'App Store' : 'Google Play';
-            
-            console.log(`App clicked: ${appName} - ${store}`);
-            // Here you could add analytics tracking
+            const appCard = link.closest('.app-card');
+            if (appCard) {
+                const appTitle = appCard.querySelector('.app-title');
+                const appName = appTitle ? appTitle.textContent : 'Unknown App';
+                const store = link.classList.contains('ios-link') ? 'App Store' : 'Google Play';
+                
+                console.log(`App clicked: ${appName} - ${store}`);
+                // Here you could add analytics tracking
+            }
         });
     });
 }
 
-// Initialize neural network - DISABLED for performance
+// Initialize apps showcase
 document.addEventListener('DOMContentLoaded', function() {
-    // Neural network and heavy animations disabled for better performance
-    // initNeuralNetwork();
-    // initNeuralHoverEffects();
-    // initNeuralinkInterface();
-    
-    // Apps showcase is lightweight, always initialize
     initAppsShowcase();
 });

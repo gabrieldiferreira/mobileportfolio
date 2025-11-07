@@ -11,15 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initAlpenglowFeatures() {
-    // Luminous cursor - DISABLED for performance
-    // initLuminousCursor();
-    
-    // Aurora particle system - DISABLED for performance
-    // initAuroraParticles();
-    
-    // Cosmic scroll effects - DISABLED for performance
-    // initCosmicScrollEffects();
-    
     // Interactive project cards with glow
     initGlowingProjectCards();
     
