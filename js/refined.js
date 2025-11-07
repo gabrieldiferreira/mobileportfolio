@@ -71,6 +71,9 @@ function initTypewriterAnimation() {
     const typewriterElement = document.getElementById('typewriter');
     if (!typewriterElement) return;
 
+    const searchBarRight = document.querySelector('.search-bar-right');
+    const aiModeButton = document.querySelector('.ai-mode-button');
+    
     // All phrases in multiple languages
     const phrases = [
         // English / Portuguese / Spanish / Italian / Japanese
@@ -95,6 +98,154 @@ function initTypewriterAnimation() {
     let deleteSpeed = 30; // Deleting speed in ms
     let pauseTime = 2000; // Pause time in ms
 
+    // Cache single line height for performance
+    let cachedSingleLineHeight = null;
+    
+    // Function to get single line height (cached)
+    function getSingleLineHeight() {
+        if (cachedSingleLineHeight === null) {
+            const styles = window.getComputedStyle(typewriterElement);
+            const fontSize = parseFloat(styles.fontSize);
+            const lineHeight = styles.lineHeight;
+            
+            // If lineHeight is a number (not "normal"), use it directly
+            if (lineHeight !== 'normal' && !isNaN(parseFloat(lineHeight))) {
+                cachedSingleLineHeight = parseFloat(lineHeight);
+            } else {
+                // Default to 1.5 * fontSize if lineHeight is "normal"
+                cachedSingleLineHeight = fontSize * 1.5;
+            }
+        }
+        return cachedSingleLineHeight;
+    }
+    
+    // Function to check if text wraps to multiple lines
+    function checkTextWrapping() {
+        const singleLineHeight = getSingleLineHeight();
+        const currentHeight = typewriterElement.scrollHeight;
+        
+        // If current height is significantly greater than single line height, text has wrapped
+        // Using 1.4 threshold to account for padding and slight variations
+        const isWrapped = currentHeight > singleLineHeight * 1.4;
+        
+        return isWrapped;
+    }
+
+    // Track current state to prevent rapid toggling
+    let isIconsVisible = true;
+    let updateTimeout = null;
+    const searchBar = document.querySelector('.search-bar');
+    
+    // Function to scale search icon with card height
+    function updateSearchIconSize() {
+        if (!searchBar) return;
+        
+        const cardHeight = searchBar.offsetHeight;
+        const baseHeight = 64; // Base min-height
+        const scaleFactor = Math.min(cardHeight / baseHeight, 1.5); // Max 1.5x scale
+        const iconSize = Math.max(20 * scaleFactor, 20); // Minimum 20px
+        
+        // Update circle size
+        const circleIcon = searchBar;
+        if (circleIcon) {
+            circleIcon.style.setProperty('--icon-size', `${iconSize}px`);
+        }
+        
+        // Update handle size
+        const handleHeight = Math.max(8 * scaleFactor, 8);
+        const searchBarLeft = document.querySelector('.search-bar-left');
+        if (searchBarLeft) {
+            searchBarLeft.style.setProperty('--handle-height', `${handleHeight}px`);
+        }
+    }
+    
+    // Function to show/hide icons based on text wrapping
+    function updateIconsVisibility() {
+        // Clear any pending updates
+        if (updateTimeout) {
+            clearTimeout(updateTimeout);
+        }
+        
+        // Debounce the update to prevent rapid toggling
+        updateTimeout = setTimeout(() => {
+            const isWrapped = checkTextWrapping();
+            const searchBarLeft = document.querySelector('.search-bar-left');
+            const searchInputWrapper = document.querySelector('.search-input-wrapper');
+            
+            // Only update if state actually changed
+            if ((isWrapped && isIconsVisible) || (!isWrapped && !isIconsVisible)) {
+                if (isWrapped) {
+                    // Hide icons when text wraps and expand text area
+                    if (searchBarRight) {
+                        searchBarRight.style.opacity = '0';
+                        searchBarRight.style.transform = 'scale(0.9)';
+                        searchBarRight.style.pointerEvents = 'none';
+                        searchBarRight.style.width = '0';
+                        searchBarRight.style.margin = '0';
+                        searchBarRight.style.padding = '0';
+                        searchBarRight.style.borderRight = 'none';
+                        searchBarRight.style.overflow = 'hidden';
+                        searchBarRight.style.transition = 'opacity 0.3s ease, transform 0.3s ease, width 0.3s ease, margin 0.3s ease, padding 0.3s ease, border 0.3s ease';
+                    }
+                    if (aiModeButton) {
+                        aiModeButton.style.opacity = '0';
+                        aiModeButton.style.transform = 'scale(0.9)';
+                        aiModeButton.style.pointerEvents = 'none';
+                        aiModeButton.style.width = '0';
+                        aiModeButton.style.margin = '0';
+                        aiModeButton.style.padding = '0';
+                        aiModeButton.style.transition = 'opacity 0.3s ease, transform 0.3s ease, width 0.3s ease, margin 0.3s ease, padding 0.3s ease';
+                    }
+                    // Expand text area to use freed space
+                    if (searchBarLeft) {
+                        searchBarLeft.style.flex = '1 1 100%';
+                        searchBarLeft.style.transition = 'flex 0.3s ease';
+                    }
+                    if (searchInputWrapper) {
+                        searchInputWrapper.style.flex = '1 1 100%';
+                        searchInputWrapper.style.maxWidth = '100%';
+                        searchInputWrapper.style.transition = 'flex 0.3s ease, max-width 0.3s ease';
+                    }
+                } else {
+            // Show icons when text is on single line and restore text area
+                    if (searchBarRight) {
+                        searchBarRight.style.opacity = '1';
+                        searchBarRight.style.transform = 'scale(1)';
+                        searchBarRight.style.pointerEvents = 'auto';
+                        searchBarRight.style.width = '';
+                        searchBarRight.style.margin = '';
+                        searchBarRight.style.padding = '';
+                        searchBarRight.style.borderRight = '';
+                        searchBarRight.style.overflow = '';
+                        searchBarRight.style.transition = 'opacity 0.3s ease, transform 0.3s ease, width 0.3s ease, margin 0.3s ease, padding 0.3s ease, border 0.3s ease';
+                    }
+                    if (aiModeButton) {
+                        aiModeButton.style.opacity = '1';
+                        aiModeButton.style.transform = 'scale(1)';
+                        aiModeButton.style.pointerEvents = 'auto';
+                        aiModeButton.style.width = '';
+                        aiModeButton.style.margin = '';
+                        aiModeButton.style.padding = '';
+                        aiModeButton.style.transition = 'opacity 0.3s ease, transform 0.3s ease, width 0.3s ease, margin 0.3s ease, padding 0.3s ease';
+                    }
+                    // Restore text area to original size
+                    if (searchBarLeft) {
+                        searchBarLeft.style.flex = '';
+                        searchBarLeft.style.transition = 'flex 0.3s ease';
+                    }
+                    if (searchInputWrapper) {
+                        searchInputWrapper.style.flex = '';
+                        searchInputWrapper.style.maxWidth = '';
+                        searchInputWrapper.style.transition = 'flex 0.3s ease, max-width 0.3s ease';
+                    }
+                }
+                
+                // Update state flag
+                isIconsVisible = !isWrapped;
+            }
+        }, 50); // Small delay to prevent rapid toggling
+    }
+
     function typeWriter() {
         const currentPhrase = phrases[currentPhraseIndex];
         
@@ -109,6 +260,12 @@ function initTypewriterAnimation() {
             currentCharIndex++;
             typeSpeed = 50;
         }
+
+        // Check wrapping after text update (use setTimeout to ensure DOM is updated)
+        setTimeout(() => {
+            updateIconsVisibility();
+            updateSearchIconSize();
+        }, 10);
 
         if (!isDeleting && currentCharIndex === currentPhrase.length) {
             // Finished typing, pause then start deleting
