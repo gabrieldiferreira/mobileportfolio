@@ -21,12 +21,12 @@
   --gradient-neon: linear-gradient(135deg, #06B6D4 0%, #8B5CF6 50%, #EC4899 100%);
   --gradient-warm: linear-gradient(135deg, #F97316 0%, #EC4899 50%, #8B5CF6 100%);
   
-  /* Base Colors */
-  --bg-cosmic: #0A0A0F;
-  --bg-dark: #111827;
-  --bg-darker: #0F172A;
-  --bg-glass: rgba(15, 23, 42, 0.8);
-  --bg-glass-light: rgba(30, 41, 59, 0.6);
+  /* Base Colors - Dracula Theme */
+  --bg-cosmic: #282a36; /* Dracula Background */
+  --bg-dark: #21222c; /* Dracula Current Line */
+  --bg-darker: #1e1f29; /* Dracula Darker */
+  --bg-glass: rgba(40, 42, 54, 0.8); /* Dracula Glass */
+  --bg-glass-light: rgba(68, 71, 90, 0.6); /* Dracula Selection */
   
   /* Text Colors */
   --text-primary: #F8FAFC;
@@ -72,13 +72,13 @@
   --shadow-cosmic: 0 0 40px rgba(124, 58, 237, 0.2);
 }
 
-/* Dark theme overrides */
+/* Dark theme overrides - Dracula */
 [data-theme="dark"] {
-  --bg-cosmic: #000000;
-  --bg-dark: #0A0A0F;
-  --bg-darker: #050508;
-  --glass-bg: rgba(0, 0, 0, 0.3);
-  --glass-border: rgba(255, 255, 255, 0.05);
+  --bg-cosmic: #282a36; /* Dracula Background */
+  --bg-dark: #21222c; /* Dracula Current Line */
+  --bg-darker: #1e1f29; /* Dracula Darker */
+  --glass-bg: rgba(40, 42, 54, 0.3);
+  --glass-border: rgba(248, 248, 242, 0.1); /* Dracula Foreground */
 }
 
 /* Cosmic Background */
