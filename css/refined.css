@@ -1917,6 +1917,115 @@ body {
   width: 100%;
 }
 
+/* Dropdown Menu Styles */
+.nav-item-dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: rgba(15, 15, 23, 0.95);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(189, 147, 249, 0.3);
+  border-radius: 12px;
+  min-width: 220px;
+  padding: 12px 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  list-style: none;
+}
+
+.nav-item-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-item {
+  position: relative;
+  padding: 10px 20px;
+  transition: all 0.2s ease;
+}
+
+.dropdown-item a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.dropdown-item:hover {
+  background: rgba(189, 147, 249, 0.1);
+}
+
+.dropdown-item:hover > a {
+  color: var(--accent-secondary);
+}
+
+/* Submenu Styles */
+.dropdown-submenu {
+  position: relative;
+}
+
+.submenu {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  transform: translateX(10px);
+  background: rgba(15, 15, 23, 0.98);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(189, 147, 249, 0.3);
+  border-radius: 12px;
+  min-width: 200px;
+  padding: 10px 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  list-style: none;
+}
+
+.dropdown-submenu:hover .submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+/* Mobile specific dropdown adjustments */
+@media screen and (max-width: 768px) {
+  .dropdown-menu, .submenu {
+    position: static;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding-left: 20px;
+    display: none;
+  }
+  
+  .nav-item-dropdown.active .dropdown-menu,
+  .dropdown-submenu.active .submenu {
+    display: block;
+  }
+  
+  .dropdown-item a {
+    font-size: 16px;
+    padding: 12px 0;
+  }
+}
+
 .navbar #logo {
   position: absolute;
   left: var(--space-6);

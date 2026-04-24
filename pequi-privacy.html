@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Política de Privacidade | Pequi - AI Student & School</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon/logo-favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f0f17;
+            --card-bg: rgba(30, 31, 41, 0.7);
+            --accent: #bd93f9;
+            --accent-secondary: #8be9fd;
+            --text-primary: #ffffff;
+            --text-secondary: #e2e8f0;
+            --border: rgba(189, 147, 249, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(189, 147, 249, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 40%);
+            color: var(--text-primary);
+            line-height: 1.8;
+            padding: 4rem 1rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 4rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            border-radius: 20px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            box-shadow: 0 10px 20px rgba(189, 147, 249, 0.3);
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .last-update {
+            font-size: 0.9rem;
+            color: var(--accent-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            margin-top: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-secondary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 2rem;
+            list-style: none;
+        }
+
+        li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .highlight-box {
+            background: rgba(189, 147, 249, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(189, 147, 249, 0.2);
+            margin: 2.5rem 0;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, rgba(189, 147, 249, 0.1), rgba(139, 92, 246, 0.1));
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .contact-email {
+            color: var(--accent-secondary);
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem;
+                border-radius: 0;
+            }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">
+            <span>← Voltar ao Portfólio</span>
+        </a>
+
+        <header class="header">
+            <div class="app-icon">📚</div>
+            <h1>Política de Privacidade</h1>
+            <p class="last-update">Pequi - AI Student & School</p>
+            <p style="margin-top: 0.5rem; opacity: 0.7;">Última atualização: 24 de abril de 2026</p>
+        </header>
+
+        <section>
+            <p>Bem-vindo ao <strong>Pequi - AI Student & School</strong>. Esta Política de Privacidade descreve como o aplicativo coleta, usa, processa e protege as informações dos usuários. Desenvolvido por <strong>Gabriel Ferreira</strong>, o Pequi é uma ferramenta educacional focada em estudantes brasileiros, utilizando Inteligência Artificial para otimizar o aprendizado.</p>
+            
+            <div class="highlight-box">
+                <p><strong>Compromisso de Privacidade:</strong> Operamos sob o princípio da minimização de dados. O Pequi <strong>NÃO vende seus dados</strong> nem utiliza suas informações para fins de marketing ou propaganda.</p>
+            </div>
+
+            <h2>1. Dados Coletados</h2>
+            <p>Para oferecer uma experiência personalizada, o aplicativo processa os seguintes tipos de informações:</p>
+            <ul>
+                <li><strong>Conteúdo de Estudo:</strong> Notas, flashcards e perguntas criadas por você.</li>
+                <li><strong>Métricas de Progresso:</strong> Tempo dedicado aos estudos, tarefas concluídas e desempenho.</li>
+                <li><strong>Interações com IA:</strong> Texto das perguntas enviadas ao mentor virtual e histórico de conversas (armazenado localmente).</li>
+                <li><strong>Dados de Uso:</strong> Informações técnicas sobre a navegação e funcionalidades utilizadas.</li>
+                <li><strong>Tokens de Autenticação:</strong> Chaves para comunicação com a API do Google Gemini, armazenadas localmente.</li>
+            </ul>
+
+            <h2>2. Como Usamos Seus Dados</h2>
+            <p>Os dados coletados são utilizados exclusivamente para:</p>
+            <ul>
+                <li>Gerar conteúdo educacional (checklists, flashcards e resumos).</li>
+                <li>Monitorar e exibir seu desempenho através de gráficos.</li>
+                <li>Permitir a interação pedagógica com o mentor virtual.</li>
+                <li>Otimizar o tempo de resposta através de cache local.</li>
+            </ul>
+
+            <h2>3. Compartilhamento com Terceiros</h2>
+            <p>O único compartilhamento de dados ocorre com a <strong>Google Gemini 2.0 Flash API</strong> para o processamento das inteligências artificiais.</p>
+            <ul>
+                <li>O processamento pela API do Google é efêmero.</li>
+                <li>Nenhum dado pessoal é compartilhado com anunciantes ou empresas de análise externa.</li>
+            </ul>
+
+            <h2>4. Armazenamento e Segurança</h2>
+            <p>Priorizamos o armazenamento local (Room/SQLite). Todas as suas notas e histórico ficam guardados exclusivamente no seu dispositivo Android, garantindo controle total e privacidade.</p>
+
+            <h2>5. Seus Direitos (LGPD)</h2>
+            <p>Respeitamos integralmente a Lei Geral de Proteção de Dados:</p>
+            <ul>
+                <li><strong>Acesso e Correção:</strong> Controle total sobre o conteúdo criado.</li>
+                <li><strong>Exclusão:</strong> Você pode apagar todos os dados nas configurações do app ou ao desinstalar o aplicativo.</li>
+                <li><strong>Informação:</strong> Transparência sobre o processamento de dados.</li>
+            </ul>
+
+            <div class="contact-card">
+                <p>Dúvidas ou solicitações sobre privacidade?</p>
+                <a href="mailto:info@gabrielferreira.club" class="contact-email">info@gabrielferreira.club</a>
+                <p style="margin-top: 1rem; font-size: 0.9rem;">Gabriel Ferreira - Desenvolvedor</p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

@@ -379,6 +379,18 @@ function initExistingFeatures() {
         navMenu.classList.remove("active");
     }
 
+    // Dropdown functionality for mobile
+    const dropdownToggles = document.querySelectorAll('.nav-item-dropdown > a, .dropdown-submenu > a');
+    dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                const parent = this.parentElement;
+                parent.classList.toggle('active');
+            }
+        });
+    });
+
 
     // Adding date
     let myDate = document.querySelector("#datee");
